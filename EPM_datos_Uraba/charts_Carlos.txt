@@ -1,0 +1,12 @@
+num_repar_ot=df["NumberOT"].value_counts().reset_index() #Number of reprisons OT
+fig = px.box(num_repar_ot, y="NumberOT",notched=True, title="Box plot of Number of reparations per Work order")
+fig.show()
+display(num_repar_ot["NumberOT"].describe(percentiles=[.25, .5, .75, 0.76, 0.77]).reset_index()) #descriptives statistics of number of reparisons
+
+num_calls_ot_pri=df[["CallID", "NumberOT","Priority"]].groupby(["NumberOT","Priority"]).count().reset_index()
+fig1 = px.box(num_calls_ot_pri, x="Priority", y="CallID",color="Priority",notched=True, title="Box plot of Number of reparations per CallID")
+fig1.show()
+
+fig2 = px.pie(num_service_type, values='ServiceType', names='index', title='Pie chart of the number of reparations by type of service')
+fig2.update_traces(textinfo='percent+label')
+fig2.show()
