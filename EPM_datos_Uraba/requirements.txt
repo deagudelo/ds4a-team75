@@ -1,0 +1,7 @@
+pandas
+numpy
+xlrd
+matplotlib
+seaborn
+folium
+wordcloud
