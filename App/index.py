@@ -11,7 +11,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 
 from app import app
-from tabs import sidepanel, title, tab1, tab2, navbar
+from tabs import sidepanel, title, tab1, tab2, tab3, navbar
 from database import transforms
 
 app.layout = html.Div([

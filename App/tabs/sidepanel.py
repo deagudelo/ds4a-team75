@@ -9,7 +9,7 @@ from dash.dependencies import Input, Output
 
 from app import app
 
-from tabs import tab1, tab2
+from tabs import tab1, tab2, tab3
 from database import transforms
 
 
@@ -34,6 +34,8 @@ layout = html.Div([
             dcc.Tabs(id="tabs", value='tab-1', children=[
                     dcc.Tab(label='Datos uno', value='tab-1'),
                     dcc.Tab(label='Datos dos', value='tab-2'),
+                    dcc.Tab(label='Mapa Prioridad por municipio', value='tab-3'),
+                    
                 ])
             , html.Div(id='tabs-content')
         ]), width=9)])
