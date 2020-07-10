@@ -25,9 +25,9 @@ def render_content(tab):
     if tab == 'tab-1':
         return tab1.layout
     elif tab == 'tab-2':
-       return tab2.layout
+        return tab2.layout
     elif tab == 'tab-3':
-       return tab3.layout
+        return tab3.layout
 
 
 
@@ -36,5 +36,5 @@ def render_content(tab):
 
 
 if __name__ == '__main__':
-    #app.run_server(debug = True)
-    app.run_server(host='0.0.0.0',port='8050',debug=True)
+    app.run_server(debug = True)
+    #app.run_server(host='0.0.0.0',port='8050',debug=True)
