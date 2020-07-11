@@ -12,6 +12,7 @@ from app import app
 from tabs import tab1, tab2, tab3
 from database import transforms
 
+listaTechLocation = ['Transformador','Salida Circuito','Aisladero','Reconectador','Salida_Circuito']
 
 layout = html.Div([
     
@@ -22,9 +23,16 @@ layout = html.Div([
                 dbc.Col(
                     html.Div([
                      html.H2('Filters'),
+                     html.H4('Technical location:'),
+                     html.Br(),
+                     dcc.Dropdown(
+                                    id='techlocation',
+                                    options=[{'label': i, 'value': i} for i in listaTechLocation],
+                                    value='Transformador'
+                                ),
                      html.Div([html.H5('Controls')])
                     ], style={'marginBottom': 50, 'marginTop': 25, 'marginLeft':15, 'marginRight':15}),
-                width=1),
+                width=2),
            # id="collapse",
            # ),
 
@@ -37,7 +45,7 @@ layout = html.Div([
                         ]),
             html.Div(id='tabs-content')
                     ]), 
-        width=11)
+        width=10)
         ])
     
     ])

@@ -2,6 +2,9 @@ import unicodedata
 import pandas as pd
 import json
 import plotly.express as px
+from database import transforms
+
+df = transforms.df
 
 
 def remove_accents(input_str):
@@ -10,7 +13,7 @@ def remove_accents(input_str):
 ##################################################################################################
 #Load the data and create the map
 ##################################################################################################
-df = pd.read_excel('database//uraba_all.xlsx')
+#df = pd.read_excel('database//uraba_all.xlsx')
 with open('database//GeoData/munis.geojson', encoding='utf-8') as geo:
 #     print(type(geo.read()))
     geojson = json.loads(remove_accents(geo.read()))

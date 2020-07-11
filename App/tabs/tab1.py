@@ -28,6 +28,7 @@ layout =html.Div([
  			#html.H3('Tab content 1'),
             #html.H3('Tab content 3'),
 
+            #html.Div(id='my-output')
 				  #html.H1('Tab uno contenido'),
 				#html.H1(children='Hello Dash'),
 			dcc.Graph(figure=fig2, id='g1'),

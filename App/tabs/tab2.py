@@ -9,15 +9,18 @@ import dash_table
 from app import app
 from database import transforms
 
-#df = transforms.df
+
 figpie_comp = transforms.figpie_comp
 
-layout = html.Div(
+layout = html.Div([
+
+
+			dcc.Graph(id='graph_circuits'),
             dcc.Graph(figure=figpie_comp, id='pie_grap2')
 #            html.H1('Tab dos contenido'),
 #            id='table-paging-with-graph-container',
 #            className="five columns"
-        )
+        ])
 
 #@app.callback(Output('table-paging-with-graph-container', "children"),
 #[Input('rating-95', 'value')
