@@ -12,7 +12,7 @@ import pandas as pd
 
 from app import app
 from tabs import sidepanel, title, tab1, tab2, navbar
-from database import transforms
+#from database import transforms
 
 app.layout = html.Div([
             navbar.Navbar(), 
@@ -25,10 +25,9 @@ def render_content(tab):
     if tab == 'tab-1':
         return tab1.layout
     elif tab == 'tab-2':
-        return tab2.layout
+       return tab2.layout
     elif tab == 'tab-3':
-        return tab3.layout
-
+       return tab3.layout
 
 
 
