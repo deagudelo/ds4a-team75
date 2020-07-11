@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
 
-from app import app 
+from app import app
 from database import transforms
 
 #df = transforms.df
