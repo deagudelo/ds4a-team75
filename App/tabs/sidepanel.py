@@ -15,27 +15,28 @@ from database import transforms
 
 layout = html.Div([
     
- 
+    dbc.Row(
 
+        [  
+           # dbc.Collapse(
+                dbc.Col(
+                    html.Div([
+                     html.H2('Filters'),
+                     html.Div([html.H5('Controls')])
+                    ], style={'marginBottom': 50, 'marginTop': 25, 'marginLeft':15, 'marginRight':15}),
+                width=1),
+           # id="collapse",
+           # ),
 
-
-    dbc.Row([dbc.Col(
-        html.Div([
-         html.H2('Filters'),
-         html.Div([html.H5('Controls')
-            
-                        
+         dbc.Col(
+            html.Div([
+                    dcc.Tabs(id="tabs", value='tab-1', children=[
+                        dcc.Tab(label='Exploratory Data Analysis 1', value='tab-1'),
+                        dcc.Tab(label='Exploratory Data Analysis 2', value='tab-2')
+                        ]),
+            html.Div(id='tabs-content')
+                    ]), 
+        width=11)
         ])
-    
-        ], style={'marginBottom': 50, 'marginTop': 25, 'marginLeft':15, 'marginRight':15})
-    , width=3)
-
-    ,dbc.Col(html.Div([
-            dcc.Tabs(id="tabs", value='tab-1', children=[
-                    dcc.Tab(label='Datos uno', value='tab-1'),
-                    dcc.Tab(label='Datos dos', value='tab-2'),
-                ])
-            , html.Div(id='tabs-content')
-        ]), width=9)])
     
     ])
