@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-import sqlite3
+#import sqlite3
 
 from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_table
@@ -19,6 +19,7 @@ from random import randint
 #from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 #from app import app
+
 
 
 
@@ -44,4 +45,16 @@ priority_col_dict = dict(zip(df.Priority.unique(),priority_colors[-1::-1]))
 
 num_service_type=df["ServiceType"].value_counts().reset_index()
 figpie= px.pie(num_service_type, values='ServiceType', names='index', title='Service Type Distribution')
+
+num_repar_ot=df["NumberOT"].value_counts().reset_index() 
+fig = px.box(num_repar_ot, y="NumberOT",notched=True, title="Box plot of Number of reparations per Work order")
+
+#
+num_calls_ot_pri=df[["CallID", "NumberOT","Priority"]].groupby(["NumberOT","Priority"]).count().reset_index()
+fig1 = px.box(num_calls_ot_pri, x="Priority", y="CallID",color="Priority",notched=True, title="Box plot of Number of reparations per CallID")
+
+
+fig2 = px.pie(num_service_type, values='ServiceType', names='index', title='Pie chart of the number of reparations by type of service')
+fig2.update_traces(textinfo='percent+label')
+
 
