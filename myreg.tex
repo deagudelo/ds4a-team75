@@ -1,0 +1,25 @@
+\documentclass{report}
+\usepackage{booktabs}
+\begin{document}\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                       &     NumberOT     & \textbf{  No. Observations:  } &    11263    \\
+\textbf{Model:}                               &       GLM        & \textbf{  Df Residuals:      } &    11260    \\
+\textbf{Model Family:}                        &     Poisson      & \textbf{  Df Model:          } &        2    \\
+\textbf{Link Function:}                       &       log        & \textbf{  Scale:             } &    1.0000   \\
+\textbf{Method:}                              &       IRLS       & \textbf{  Log-Likelihood:    } &   -21066.   \\
+\textbf{Date:}                                & Sat, 11 Jul 2020 & \textbf{  Deviance:          } &    14246.   \\
+\textbf{Time:}                                &     21:02:31     & \textbf{  Pearson chi2:      } &  2.49e+04   \\
+\textbf{No. Iterations:}                      &        5         & \textbf{                     } &             \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                              & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$> |$z$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                            &       0.6868  &        0.011     &    64.573  &         0.000        &        0.666    &        0.708     \\
+\textbf{ServiceType[T.Mantenimiento Energía]} &      -0.0501  &        0.015     &    -3.314  &         0.001        &       -0.080    &       -0.020     \\
+\textbf{District[T.Turbo TyD]}                &       0.1659  &        0.013     &    12.546  &         0.000        &        0.140    &        0.192     \\
+\bottomrule
+\end{tabular}
+%\caption{Generalized Linear Model Regression Results}
+\end{center}\end{document}
