@@ -25,15 +25,27 @@ fig1 = transforms.fig1
 #                 ,dbc.Col(
 layout =html.Div([
 
+				 dbc.Row([  
+           # dbc.Collapse(
+                			dbc.Col(
+                  				dcc.Graph(figure=fig2, id='g1')),
+
+                			dbc.Col(
+                  			dcc.Graph(figure=fig1, id='g2'))				,
+                		   
+
+                		])
+
+
  			#html.H3('Tab content 1'),
             #html.H3('Tab content 3'),
 
             #html.Div(id='my-output')
 				  #html.H1('Tab uno contenido'),
 				#html.H1(children='Hello Dash'),
-			dcc.Graph(figure=fig2, id='g1'),
-			dcc.Graph(figure=fig1, id='g2'),
-			dcc.Graph(figure=fig, id='g3')
+			#dcc.Graph(figure=fig2, id='g1'),
+			
+			#dcc.Graph(figure=fig, id='g3')
 				#html.Div([dcc.Graph(figure=fig1, id='pie_gr')])
 		
                         

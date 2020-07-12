@@ -11,9 +11,11 @@ from database import transforms
 
 
 figpie_comp = transforms.figpie_comp
+fig_mapbox = transforms.fig_mapbox
 
 layout = html.Div([
 
+			dcc.Graph(figure=fig_mapbox, id='unmapa'),
 
 			dcc.Graph(id='graph_circuits'),
             dcc.Graph(figure=figpie_comp, id='pie_grap2')
