@@ -5,3 +5,4 @@ matplotlib
 seaborn
 folium
 wordcloud
+flask_caching

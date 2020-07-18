@@ -3,22 +3,39 @@ from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_html_components as html
 import dash_core_components as dcc
 from database import map_data
+from app import app
+from flask_caching import Cache
 
-Map_Fig = map_data.Map_Fig
+cache = Cache(app.server, config={
+    'CACHE_TYPE': 'filesystem',
+    'CACHE_DIR': 'cache-directory'
+})
+
+
+TIMEOUT = 600
+
+@cache.memoize(timeout=TIMEOUT)
+def get_figure():
+    return map_data.Map_Fig
+
 
 layout = html.Div([
-    html.H2("Mapa de prioridades por municipio", id='title', className="mx-auto text-center"), #Creates the title of the app
+    html.H2("Mapita de prioridades por municipio", id='title', className="mx-auto text-center"), #Creates the title of the app
     html.Div(className='container', children=[
-        dcc.Graph(figure=Map_Fig,id='main-figure'),
+        dcc.Loading(id="loading-1", children=[
+            dcc.Graph(figure=get_figure(),id='main-figure')
+        ], type="circle"),
         
     ]),
     
 ])
 
-#@app.callback(Output('table-paging-with-graph-container', "children"),
-#[Input('rating-95', 'value')
-#, Input('price-slider', 'value')
-#])
+# @app.callback(
+#     Output('main-figure', 'children'))
+# @cache.memoize(timeout=timeout)  # in seconds
+# def render():
+#     return map_data.Map_Fig
+
 
 
 

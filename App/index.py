@@ -12,35 +12,52 @@ import plotly.express as px
 import pandas as pd
 
 from app import app
-from tabs import sidepanel, title, tab1, tab2, tab3, navbar
+from tabs import sidepanel, title, tabs, navbar
 from database import transforms
+from flask_caching import Cache
 
 df = transforms.df
 
+cache = Cache(app.server, config={
+    'CACHE_TYPE': 'filesystem',
+    'CACHE_DIR': 'cache-directory'
+})
+
+timeout = 600
 
 app.layout = html.Div([
             navbar.Navbar(), 
             title.ti,
-            #dcc.Graph(id='graph_circuits'),
-            sidepanel.layout,
-            #html.Br()
+            html.Div(
+                className="container-fluid",
+                children=[
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Div(
+                                className='col-xs-4 col-md-2',
+                                children=[
+                                    sidepanel.layout
+                                ]
+                            ),
+                            html.Div(
+                                className='col-xs-8 col-md-10',
+                                children=[
+                                    tabs.layout
+                                ]
+                            )
+
+                        ]
+                    )
+                ]
+            )
 
             ])
-@app.callback(Output('tabs-content', 'children'),
-              [Input('tabs', 'value')])
-def render_content(tab):
-    if tab == 'tab-1':
-        return tab1.layout
-    elif tab == 'tab-2':
-        return tab2.layout
-    elif tab == 'tab-3':
-        return tab3.layout
 
 @app.callback(
     Output('graph_circuits', 'figure'),
-    [Input('techlocation', 'value')])
+    [Input('techlocation', 'value')])  # in seconds
 def update_figure(filtro):
-
         dff= df[df['LocationDescription'] == filtro]
         dfg= dff.groupby(df['Circuit'])['NumberOT'].count().reset_index()
         dfg.sort_values(by=['NumberOT'], inplace=True, ascending=False)
@@ -58,5 +75,5 @@ def update_figure(filtro):
 
 
 if __name__ == '__main__':
-    app.run_server(debug = True, use_reloader=False)
-    #app.run_server(host='0.0.0.0',port='8050',debug=True)
+    # app.run_server(debug = False)
+    app.run_server(host='0.0.0.0',port='8050',debug=True)
