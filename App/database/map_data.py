@@ -2,6 +2,7 @@ import unicodedata
 import pandas as pd
 import json
 import plotly.express as px
+
 from database import transforms
 
 df = transforms.df
@@ -21,7 +22,7 @@ with open('database//GeoData/munis.geojson', encoding='utf-8') as geo:
 df['town_upper'] = df.town.apply(lambda x: remove_accents(str(x).upper()))
 dff = df.groupby('town_upper').mean().reset_index()
 Map_Fig = px.choropleth_mapbox(dff,                          #Data
-        locations='town_upper',                    #Column containing the identifiers used in the GeoJSON file 
+        locations='town_upper',                    #Column containing the identifiers used in the GeoJSON file
         color='Priority',                          #Column giving the color intensity of the region
         geojson=geojson,                           #The GeoJSON file
         featureidkey="properties.MPIO_CNMBR",      #Id in properties
@@ -30,4 +31,4 @@ Map_Fig = px.choropleth_mapbox(dff,                          #Data
         center={"lat": 7.88299, "lon": -76.62587}, #Center
         color_continuous_scale="Viridis",          #Color Scheme
         opacity=0.5,                               #Opacity of the map
-        ) 
+        )

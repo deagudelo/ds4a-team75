@@ -2,9 +2,11 @@ import dash
 from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_html_components as html
 import dash_core_components as dcc
+from flask_caching import Cache
+
 from database import map_data
 from app import app
-from flask_caching import Cache
+
 
 cache = Cache(app.server, config={
     'CACHE_TYPE': 'filesystem',
@@ -25,9 +27,9 @@ layout = html.Div([
         dcc.Loading(id="loading-1", children=[
             dcc.Graph(figure=get_figure(),id='main-figure')
         ], type="circle"),
-        
+
     ]),
-    
+
 ])
 
 # @app.callback(
@@ -35,9 +37,3 @@ layout = html.Div([
 # @cache.memoize(timeout=timeout)  # in seconds
 # def render():
 #     return map_data.Map_Fig
-
-
-
-
-
-   
