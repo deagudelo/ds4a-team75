@@ -67,39 +67,42 @@ layout = html.Div([
             )
         ]
     ),
-    html.Div(id='tab-content', children=[
-        html.Div(
-            id='eda1',
-            className='tab-pane fade show active',
-            children=[
-                tab1.layout
-            ],
-            role='tabpanel',
-            **{
-                'aria-labelledby': "eda1-tab"
-            }
-        ),
-        html.Div(
-            id='eda2',
-            className='tab-pane fade',
-            children=[
-                tab2.layout
-            ],
-            role='tabpanel',
-            **{
-                'aria-labelledby': "eda2-tab"
-            }
-        ),
-        html.Div(
-            id='eda3',
-            className='tab-pane fade',
-            children=[
-                tab3.layout
-            ],
-            role='tabpanel',
-            **{
-                'aria-labelledby': "eda3-tab"
-            }
-        )
-    ])
+    html.Div(
+        className='tab-content',
+        children=[
+            html.Div(
+                id='eda1',
+                className='tab-pane fade show active',
+                children=[
+                    tab1.layout
+                ],
+                role='tabpanel',
+                **{
+                    'aria-labelledby': "eda1-tab"
+                }
+            ),
+            html.Div(
+                id='eda2',
+                className='tab-pane fade',
+                children=[
+                    tab2.layout
+                ],
+                role='tabpanel',
+                **{
+                    'aria-labelledby': "eda2-tab"
+                }
+            ),
+            html.Div(
+                id='eda3',
+                className='tab-pane fade',
+                children=[
+                    tab3.layout
+                ],
+                role='tabpanel',
+                **{
+                    'aria-labelledby': "eda3-tab"
+                }
+            )
+        ]
+    )
 ])

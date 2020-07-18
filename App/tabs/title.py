@@ -10,15 +10,16 @@ ti = html.Div(
                 html.Img(
                     src=app.get_asset_url("logoepm.png"),
                     id="epm-image",
+                    className='mx-auto my-auto'
                 ),
             ],
-            className="col-xs-10 col-md-2"),
+            className="col-xs-10 col-md-2 px-0 text-center"),
         html.Div(
             children=[
                 html.H1(
                     'Electricity Distribution Failure Model',
-                    className="mx-auto text-center"
+                    className="mx-auto my-auto text-center"
                 )
-            ], className="col-xs-10")
+            ], className="col-xs-10 col-md-10 jumbotron vertical-center")
     ]
 )
