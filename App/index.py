@@ -6,6 +6,7 @@ import dash_table
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import plotly.express as px
+from flask_caching import Cache
 
 #import sqlite3
 
@@ -14,7 +15,7 @@ import pandas as pd
 from app import app
 from tabs import sidepanel, title, tabs, navbar
 from database import transforms
-from flask_caching import Cache
+
 
 df = transforms.df
 
@@ -75,5 +76,5 @@ def update_figure(filtro):
 
 
 if __name__ == '__main__':
-    # app.run_server(debug = False)
-    app.run_server(host='0.0.0.0',port='8050',debug=True)
+    app.run_server(debug = False)
+    #app.run_server(host='0.0.0.0',port='8050',debug=True)
