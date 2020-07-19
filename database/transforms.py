@@ -30,14 +30,14 @@ from random import randint
 #############################
 # Load  data
 #############################
-df = pd.read_excel('database/Reporte Uraba2019_CAGMV1Est.xlsx')
+df = pd.read_excel('uraba_all.xlsx')
 df.Latitude = df.Latitude/1000000
 df.Longitude = df.Longitude/1000000
 
 num_service_type=df["ServiceType"].value_counts().reset_index()
 figpie= px.pie(num_service_type, values='ServiceType', names='index', title='Service Type Distribution')
 
-locres_wo = pd.read_csv('database/locres_wo.csv')
+locres_wo = pd.read_csv('locres_wo.csv')
 figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', title='Failure components ditribution')
 
 num_repar_ot=df["NumberOT"].value_counts().reset_index() 
