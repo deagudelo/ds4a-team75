@@ -40,7 +40,7 @@ figpie= px.pie(num_service_type, values='ServiceType', names='index', title='Ser
 locres_wo = pd.read_csv('database//locres_wo.csv')
 figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', title='Failure components ditribution')
 
-num_repar_ot=df["NumberOT"].value_counts().reset_index() 
+num_repar_ot=df["NumberOT"].value_counts().reset_index()
 fig = px.box(num_repar_ot, y="NumberOT",notched=True, title="Box plot of Number of reparations per Work order")
 
 #
@@ -56,7 +56,6 @@ px.set_mapbox_access_token(mapbox_access_token)
 fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude",    color="ServiceType", #size= 'DuratioMin',
                   color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10,opacity=0.5)
 fig_mapbox.update_layout(mapbox_style="open-street-map")
+#Se podría cambiar esto por un diccionario por municipios
 fig_mapbox.update_layout(mapbox_center ={"lat": 8.202578, "lon": -76.58468})
 fig_mapbox.update_layout(mapbox_zoom=8)
-
-
