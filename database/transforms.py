@@ -30,7 +30,7 @@ from random import randint
 #############################
 # Load  data
 #############################
-df = pd.read_excel('Database//Reporte Uraba2019_CAGMV1Est.xlsx')
+df = pd.read_excel('database//Reporte Uraba2019_CAGMV1Est.xlsx')
 df.Latitude = df.Latitude/1000000
 df.Longitude = df.Longitude/1000000
 
