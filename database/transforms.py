@@ -10,16 +10,19 @@ from pprint import pprint as pp
 #############################
 # Load  data
 #############################
-print("assets Path:")
-print(app.config.assets_url_path)
-df = pd.read_excel(os.path.join(app.config.assets_url_path, 'uraba_all.xlsx'))
+print("cwd:")
+print(os.getcwd())
+# pp(vars(app))
+path = os.path.join(os.getcwd(), 'database', 'uraba_all.xlsx')
+print(path)
+df = pd.read_excel(path)
 df.Latitude = df.Latitude/1000000
 df.Longitude = df.Longitude/1000000
 
 num_service_type=df["ServiceType"].value_counts().reset_index()
 figpie= px.pie(num_service_type, values='ServiceType', names='index', title='Service Type Distribution')
 
-locres_wo = pd.read_csv(os.path.join(app.config.assets_url_path, 'locres_wo.csv'))
+locres_wo = pd.read_csv(os.path.join(os.getcwd(), 'database', 'locres_wo.csv'))
 figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', title='Failure components ditribution')
 
 num_repar_ot=df["NumberOT"].value_counts().reset_index()

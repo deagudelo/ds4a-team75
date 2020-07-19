@@ -8,7 +8,6 @@ from database import transforms
 
 df = transforms.df
 
-
 def remove_accents(input_str):
     nfkd_form = unicodedata.normalize('NFKD', input_str)
     return u"".join([c for c in nfkd_form if not unicodedata.combining(c)])
@@ -16,7 +15,7 @@ def remove_accents(input_str):
 #Load the data and create the map
 ##################################################################################################
 #df = pd.read_excel('database//uraba_all.xlsx')
-with open(os.path.join(app.config.assets_url_path, 'GeoData', 'munis-noaccents.geojson'), encoding='utf-8') as geo:
+with open(os.path.join(os.getcwd(), 'database', 'GeoData', 'munis-noaccents.geojson'), encoding='utf-8') as geo:
 #     print(type(geo.read()))
     geojson = json.loads(geo.read())
 
