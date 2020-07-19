@@ -1,3 +1,4 @@
+import os
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
@@ -18,10 +19,8 @@ from random import randint
 #import folium
 #from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
-#from app import app
-
-
-
+from app import app
+from pprint import pprint as pp
 
 #conn = sqlite3.connect(r"")
 #c = conn.cursor()
@@ -30,14 +29,14 @@ from random import randint
 #############################
 # Load  data
 #############################
-df = pd.read_excel('uraba_all.xlsx')
+df = pd.read_excel(os.path.join(app.config.assets_url_path, 'uraba_all.xlsx'))
 df.Latitude = df.Latitude/1000000
 df.Longitude = df.Longitude/1000000
 
 num_service_type=df["ServiceType"].value_counts().reset_index()
 figpie= px.pie(num_service_type, values='ServiceType', names='index', title='Service Type Distribution')
 
-locres_wo = pd.read_csv('locres_wo.csv')
+locres_wo = pd.read_csv(os.path.join(app.config.assets_url_path, 'locres_wo.csv'))
 figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', title='Failure components ditribution')
 
 num_repar_ot=df["NumberOT"].value_counts().reset_index() 
