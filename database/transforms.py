@@ -1,43 +1,25 @@
-import dash
-import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-import dash_html_components as html
+import os
 import pandas as pd
-#import sqlite3
-
-from dash.dependencies import Input, Output, State, ClientsideFunction
-import dash_table
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
-#from datetime import datetime as dt
-#import json
 from random import randint
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#import folium
-#from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+from app import app
+from pprint import pprint as pp
 
-#from app import app
-
-
-
-
-#conn = sqlite3.connect(r"")
-#c = conn.cursor()
-#df = pd.read_sql("select * from ", conn)
-#df = df[['country','']]
 #############################
 # Load  data
 #############################
-df = pd.read_excel('database//Reporte Uraba2019_CAGMV1Est.xlsx')
+print("assets Path:")
+print(app.config.assets_url_path)
+df = pd.read_excel(os.path.join(app.config.assets_url_path, 'uraba_all.xlsx'))
 df.Latitude = df.Latitude/1000000
 df.Longitude = df.Longitude/1000000
 
 num_service_type=df["ServiceType"].value_counts().reset_index()
 figpie= px.pie(num_service_type, values='ServiceType', names='index', title='Service Type Distribution')
 
-locres_wo = pd.read_csv('database//locres_wo.csv')
+locres_wo = pd.read_csv(os.path.join(app.config.assets_url_path, 'locres_wo.csv'))
 figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', title='Failure components ditribution')
 
 num_repar_ot=df["NumberOT"].value_counts().reset_index()
