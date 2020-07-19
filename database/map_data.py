@@ -15,9 +15,9 @@ def remove_accents(input_str):
 #Load the data and create the map
 ##################################################################################################
 #df = pd.read_excel('database//uraba_all.xlsx')
-with open('database//GeoData/munis.geojson', encoding='utf-8') as geo:
+with open('database//GeoData/munis-noaccents.geojson', encoding='utf-8') as geo:
 #     print(type(geo.read()))
-    geojson = json.loads(remove_accents(geo.read()))
+    geojson = json.loads(geo.read())
 
 df['town_upper'] = df.town.apply(lambda x: remove_accents(str(x).upper()))
 dff = df.groupby('town_upper').mean().reset_index()
