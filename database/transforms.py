@@ -10,6 +10,8 @@ from pprint import pprint as pp
 #############################
 # Load  data
 #############################
+print("assets Path:")
+print(app.config.assets_url_path)
 df = pd.read_excel(os.path.join(app.config.assets_url_path, 'uraba_all.xlsx'))
 df.Latitude = df.Latitude/1000000
 df.Longitude = df.Longitude/1000000
