@@ -1,31 +1,12 @@
 import os
-import dash
-import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-import dash_html_components as html
 import pandas as pd
-#import sqlite3
-
-from dash.dependencies import Input, Output, State, ClientsideFunction
-import dash_table
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
-#from datetime import datetime as dt
-#import json
 from random import randint
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#import folium
-#from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-
 from app import app
 from pprint import pprint as pp
 
-#conn = sqlite3.connect(r"")
-#c = conn.cursor()
-#df = pd.read_sql("select * from ", conn)
-#df = df[['country','']]
 #############################
 # Load  data
 #############################

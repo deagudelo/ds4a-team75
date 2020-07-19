@@ -2,7 +2,8 @@ import unicodedata
 import pandas as pd
 import json
 import plotly.express as px
-
+import os
+from app import app
 from database import transforms
 
 df = transforms.df
