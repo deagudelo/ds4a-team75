@@ -1,3 +1,4 @@
+import os
 import dash
 from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_html_components as html
@@ -12,7 +13,7 @@ TIMEOUT = 600
 def layout(application):
     cache = Cache(application.server, config={
         'CACHE_TYPE': 'filesystem',
-        'CACHE_DIR': 'cache-directory'
+        'CACHE_DIR': os.path.join(os.getcwd(), 'cache-directory')
     })
 
     @cache.memoize(timeout=TIMEOUT)

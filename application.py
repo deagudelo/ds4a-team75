@@ -1,4 +1,4 @@
-
+import os
 import dash
 import plotly
 import dash_core_components as dcc
@@ -57,7 +57,7 @@ df = transforms.df
 
 cache = Cache(application.server, config={
     'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': 'cache-directory'
+    'CACHE_DIR': os.path.join(os.getcwd(), 'cache-directory')
 })
 
 timeout = 600
@@ -101,15 +101,6 @@ def update_figure(filtro):
         fig = px.bar(dfg, x='Circuit', y='NumberOT', title='Total of Work Orders by Circuit')
         fig.update_layout(transition_duration=500)
         return fig
-#@app.callback(
-#    Output(component_id='my-output', component_property='children'),
-#    [Input('techlocation','value')]
-#)
-#def update_outpuadasast_div(input_value):
-#    return 'aqui: {}'.format(input_value)
-
-
-
 
 if __name__ == '__main__':
     application.run_server(debug = False)#, host='0.0.0.0', port=80)
