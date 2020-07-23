@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.graph_objs as go
 from dash.dependencies import Input, Output
 import dash_table
-from app import app
+from application import application
 from database import transforms
 
 

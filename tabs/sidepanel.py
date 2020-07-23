@@ -7,7 +7,7 @@ import dash_table
 import pandas
 from dash.dependencies import Input, Output
 
-from app import app
+from application import application
 
 from tabs import tab1, tab2, tab3
 from database import transforms

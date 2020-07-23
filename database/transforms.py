@@ -13,14 +13,8 @@ import numpy as np
 #from datetime import datetime as dt
 #import json
 from random import randint
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#import folium
-#from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-
-#from app import app
-
-
+from application import application
+from pprint import pprint as pp
 
 
 #conn = sqlite3.connect(r"")

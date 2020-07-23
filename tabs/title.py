@@ -1,5 +1,5 @@
 import dash_html_components as html
-from app import app
+from application import application
 
 
 ti = html.Div(
@@ -8,7 +8,7 @@ ti = html.Div(
         html.Div(
             children=[
                 html.Img(
-                    src=app.get_asset_url("logoepm.png"),
+                    src=application.get_asset_url("logoepm.png"),
                     id="epm-image",
                     className='mx-auto my-auto'
                 ),
