@@ -3,7 +3,6 @@ import pandas as pd
 import json
 import plotly.express as px
 import os
-from application import application
 from database import transforms
 
 df = transforms.df

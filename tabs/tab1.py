@@ -9,8 +9,6 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
-
-from application import application
 from database import transforms
 
 #df = transforms.df
@@ -23,7 +21,7 @@ fig1 = transforms.fig1
 #  html.Div([
 #         dbc.Row([dbc.Col(html.Div(html.P("A single, half-width column")),style = {'padding':'50px'})
 #                 ,dbc.Col(
-layout =html.Div([
+layout = html.Div([
 
 				 dbc.Row([  
            # dbc.Collapse(

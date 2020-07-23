@@ -4,7 +4,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
 from random import randint
-from application import application
 from pprint import pprint as pp
 
 #############################
