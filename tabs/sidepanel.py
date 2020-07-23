@@ -1,16 +1,5 @@
-import dash
-import plotly
-import dash_core_components as dcc
 import dash_html_components as html
-import dash_bootstrap_components as dbc
-import dash_table
-import pandas
-from dash.dependencies import Input, Output
-
-from application import application
-
-from tabs import tab1, tab2, tab3
-from database import transforms
+import dash_core_components as dcc
 
 listaTechLocation = ['Transformador', 'Salida Circuito',
                      'Aisladero', 'Reconectador', 'Salida_Circuito']

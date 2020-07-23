@@ -13,7 +13,6 @@ import numpy as np
 #from datetime import datetime as dt
 #import json
 from random import randint
-from application import application
 from pprint import pprint as pp
 
 
