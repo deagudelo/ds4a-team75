@@ -5,10 +5,10 @@ import dash_core_components as dcc
 from flask_caching import Cache
 
 from database import map_data
-from app import app
+from application import application
 
 
-cache = Cache(app.server, config={
+cache = Cache(application.server, config={
     'CACHE_TYPE': 'filesystem',
     'CACHE_DIR': 'cache-directory'
 })
