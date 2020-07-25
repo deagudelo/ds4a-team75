@@ -92,15 +92,18 @@ application.layout = html.Div([
             ])
 
 @application.callback(
-    Output('graph_circuits', 'figure'),
-    [Input('techlocation', 'value')])  # in seconds
-def update_figure(filtro):
-        dff= df[df['LocationDescription'] == filtro]
-        dfg= dff.groupby(df['Circuit'])['NumberOT'].count().reset_index()
-        dfg.sort_values(by=['NumberOT'], inplace=True, ascending=False)
-        fig = px.bar(dfg, x='Circuit', y='NumberOT', title='Total of Work Orders by Circuit')
-        fig.update_layout(transition_duration=500)
-        return fig
+    [
+        Output('graph_circuits', 'figure'),
+        Output('2graph_time', 'figure'),
+    ],
+    [
+        Input('techlocation', 'value'),
+        Input('town', 'value')
+    ])  
+def update_figure(tech,town):
+        
+        return transforms.create_g1(tech,town), transforms.create_g2(tech,town)
+
 
 if __name__ == '__main__':
     application.run_server(debug = False)#, host='0.0.0.0', port=80)

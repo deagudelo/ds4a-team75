@@ -14,16 +14,22 @@ fig_mapbox = transforms.fig_mapbox
 
 layout = html.Div([
 
-			dcc.Graph(figure=fig_mapbox, id='unmapa'),
 
-			dcc.Graph(id='graph_circuits'),
-            dcc.Graph(figure=figpie_comp, id='pie_grap2')
-#            html.H1('Tab dos contenido'),
-#            id='table-paging-with-graph-container',
-#            className="five columns"
-        ])
+					dbc.Row([ 
+					            dbc.Col(
+					                  	dcc.Graph(id='2graph_time')),
 
-#@app.callback(Output('table-paging-with-graph-container', "children"),
-#[Input('rating-95', 'value')
-#, Input('price-slider', 'value')
-#])
+					            dbc.Col(
+					                  	dcc.Graph(id='graph_circuits')),
+					        ]),
+
+					dbc.Row([ 
+								dcc.Graph(figure=fig_mapbox, id='unmapa')
+							]),
+								dcc.Graph(figure=figpie_comp, id='pie_grap2')
+					#            html.H1('Tab dos contenido'),
+					#            id='table-paging-with-graph-container',
+					#            className="five columns"
+        		])
+
+

@@ -1,8 +1,11 @@
 import dash_html_components as html
 import dash_core_components as dcc
+from database import transforms
 
 listaTechLocation = ['Transformador', 'Salida Circuito',
                      'Aisladero', 'Reconectador', 'Salida_Circuito']
+#df = transforms.df
+df_localidad = transforms.df_localidad
 
 layout = html.Div(
     [
@@ -14,6 +17,22 @@ layout = html.Div(
             options=[{'label': i, 'value': i} for i in listaTechLocation],
             value='Transformador'
         ),
+                                html.Div(
+                                    className="div-for-dropdown",
+                                    children=[
+                                        dcc.Dropdown(
+                                            id='town',
+                                            options=[{'label': town, 'value': town} for town in df_localidad],
+                                            multi=True,
+                                            placeholder='Localidad',
+                                        )
+                                    ]
+                                ),          
+
+
+
+
+
         html.Div([html.H5('Controls')])
     ],
     style={'marginBottom': 50, 'marginTop': 25,
