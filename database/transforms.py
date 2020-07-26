@@ -123,7 +123,7 @@ fig2.update_traces(textinfo='percent+label')
 
 mapbox_access_token = "pk.eyJ1IjoiY2hyaXN0aWFuYXV6IiwiYSI6ImNrY2lhMzh1cDBkMmUyc28ycTEwejQxZG8ifQ.ANShECn8rBOHPkiB04LOeA"
 px.set_mapbox_access_token(mapbox_access_token)
-fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude",    color="ServiceType", #size= 'DuratioMin',
+fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name='town',   color="ServiceType", #size= 'DuratioMin',
                   color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10,opacity=0.5)
 fig_mapbox.update_layout(mapbox_style="open-street-map")
 fig_mapbox.update_layout(mapbox_center ={"lat": 8.202578, "lon": -76.58468})
