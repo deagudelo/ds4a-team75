@@ -214,7 +214,7 @@ sm1_train=summary(m1_train)
 predict(m1_train, newdata = test)
 
 ###printig data to plot in maps
-write.csv(datosb1,"map_data.csv")
+write.csv(datosb1,"map_data_car.csv")
 
 
 
