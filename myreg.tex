@@ -3,22 +3,34 @@
 \begin{document}\begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Dep. Variable:}                       &     NumberOT     & \textbf{  No. Observations:  } &    11376    \\
-\textbf{Model:}                               &       GLM        & \textbf{  Df Residuals:      } &    11373    \\
-\textbf{Model Family:}                        &     Poisson      & \textbf{  Df Model:          } &        2    \\
-\textbf{Link Function:}                       &       log        & \textbf{  Scale:             } &    1.0000   \\
-\textbf{Method:}                              &       IRLS       & \textbf{  Log-Likelihood:    } &   -21219.   \\
-\textbf{Date:}                                & Wed, 15 Jul 2020 & \textbf{  Deviance:          } &    14263.   \\
-\textbf{Time:}                                &     18:56:30     & \textbf{  Pearson chi2:      } &  2.51e+04   \\
-\textbf{No. Iterations:}                      &        5         & \textbf{                     } &             \\
+\textbf{Dep. Variable:}                                   &     NumberOT     & \textbf{  No. Observations:  } &     7927    \\
+\textbf{Model:}                                           &       GLM        & \textbf{  Df Residuals:      } &     7912    \\
+\textbf{Model Family:}                                    &     Poisson      & \textbf{  Df Model:          } &       14    \\
+\textbf{Link Function:}                                   &       log        & \textbf{  Scale:             } &    1.0000   \\
+\textbf{Method:}                                          &       IRLS       & \textbf{  Log-Likelihood:    } &   -21891.   \\
+\textbf{Date:}                                            & Sat, 18 Jul 2020 & \textbf{  Deviance:          } &    22281.   \\
+\textbf{Time:}                                            &     18:26:26     & \textbf{  Pearson chi2:      } &  3.23e+04   \\
+\textbf{No. Iterations:}                                  &        5         & \textbf{                     } &             \\
 \bottomrule
 \end{tabular}
 \begin{tabular}{lcccccc}
-                                              & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$> |$z$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+                                                          & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$> |$z$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
 \midrule
-\textbf{Intercept}                            &       0.6836  &        0.011     &    64.700  &         0.000        &        0.663    &        0.704     \\
-\textbf{ServiceType[T.Mantenimiento Energía]} &      -0.0669  &        0.015     &    -4.468  &         0.000        &       -0.096    &       -0.038     \\
-\textbf{District[T.Turbo TyD]}                &       0.1791  &        0.013     &    13.644  &         0.000        &        0.153    &        0.205     \\
+\textbf{Intercept}                                        &       0.5971  &        0.034     &    17.440  &         0.000        &        0.530    &        0.664     \\
+\textbf{ServiceType[T.Mantenimiento Energía]}             &      -0.4943  &        0.016     &   -31.072  &         0.000        &       -0.526    &       -0.463     \\
+\textbf{ServiceType[T.Mantenimiento Línea Viva]}          &      -0.7766  &        0.079     &    -9.858  &         0.000        &       -0.931    &       -0.622     \\
+\textbf{ServiceType[T.Mto. Ener. Actividades Forestales]} &       0.8515  &        0.044     &    19.278  &         0.000        &        0.765    &        0.938     \\
+\textbf{District[T.Turbo TyD]}                            &       0.1817  &        0.013     &    14.424  &         0.000        &        0.157    &        0.206     \\
+\textbf{LocationResume[T.ALIMENTADOR PRINCIPAL]}          &       1.3969  &        0.086     &    16.289  &         0.000        &        1.229    &        1.565     \\
+\textbf{LocationResume[T.NO ESPECIFICADO]}                &       0.6614  &        0.051     &    13.013  &         0.000        &        0.562    &        0.761     \\
+\textbf{LocationResume[T.NODO]}                           &       0.1653  &        0.084     &     1.977  &         0.048        &        0.001    &        0.329     \\
+\textbf{LocationResume[T.RAMAL]}                          &       0.7060  &        0.200     &     3.535  &         0.000        &        0.315    &        1.097     \\
+\textbf{LocationResume[T.RECONECTADOR]}                   &      -0.0337  &        0.067     &    -0.501  &         0.616        &       -0.165    &        0.098     \\
+\textbf{LocationResume[T.SALIDA CIRCUITO]}                &       0.7431  &        0.036     &    20.801  &         0.000        &        0.673    &        0.813     \\
+\textbf{LocationResume[T.SEGMENTO]}                       &       0.9244  &        0.047     &    19.728  &         0.000        &        0.833    &        1.016     \\
+\textbf{LocationResume[T.TRAMO]}                          &       0.5999  &        0.064     &     9.406  &         0.000        &        0.475    &        0.725     \\
+\textbf{LocationResume[T.TRANSFORMADOR]}                  &       1.0235  &        0.033     &    31.035  &         0.000        &        0.959    &        1.088     \\
+\textbf{weekday}                                          &      -0.0713  &        0.003     &   -22.108  &         0.000        &       -0.078    &       -0.065     \\
 \bottomrule
 \end{tabular}
 %\caption{Generalized Linear Model Regression Results}
