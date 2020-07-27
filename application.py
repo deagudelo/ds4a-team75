@@ -54,14 +54,6 @@ server = application.server
 application.config.suppress_callback_exceptions = True
 
 df = transforms.df
-
-cache = Cache(application.server, config={
-    'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': os.path.join(os.getcwd(), 'cache-directory')
-})
-
-timeout = 600
-
 application.layout = html.Div([
             navbar.Navbar(), 
             title.layout(application),
@@ -106,5 +98,5 @@ def update_figure(tech,town):
 
 
 if __name__ == '__main__':
-    application.run_server(debug = False)#, host='0.0.0.0', port=80)
+    application.run_server(debug = True)#, host='0.0.0.0', port=80)
     #app.run_server(host='0.0.0.0',port='8050',debug=True)

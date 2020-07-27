@@ -1,3 +1,4 @@
+import os
 import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
@@ -121,7 +122,7 @@ df["town"] = df["town"].str.upper().astype(str)
 num_service_type=df["ServiceType"].value_counts().reset_index()
 figpie= px.pie(num_service_type, values='ServiceType', names='index', title='Service Type Distribution')
 
-locres_wo = pd.read_csv('locres_wo.csv')
+locres_wo = pd.read_csv(os.path.join(os.getcwd(), 'database', 'locres_wo.csv'))
 figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', title='Failure components ditribution')
 
 num_repar_ot=df["NumberOT"].value_counts().reset_index()
