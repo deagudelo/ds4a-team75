@@ -14,8 +14,9 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 cache = Cache(app.server, config={
-    'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': 'cache-directory'
+    'CACHE_TYPE': 'redis',
+    'CACHE_REDIS_URL': "redis://default:5MoVUbdErZIK@ec2-3-18-108-50.us-east-2.compute.amazonaws.com:6379"
+    # 'CACHE_REDIS_PASSWORD': "5MoVUbdErZIK"
 })
 
 TIMEOUT = 60

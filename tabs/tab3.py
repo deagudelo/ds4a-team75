@@ -7,14 +7,16 @@ from flask_caching import Cache
 
 from database import map_data
 
-TIMEOUT = 600
+TIMEOUT = 172800
 
 
 def layout(application):
     cache = Cache(application.server, config={
-        'CACHE_TYPE': 'filesystem',
-        'CACHE_DIR': os.path.join(os.getcwd(), 'cache-directory')
+        'CACHE_TYPE': 'redis',
+        'CACHE_REDIS_URL': "redis://default:5MoVUbdErZIK@ec2-3-18-108-50.us-east-2.compute.amazonaws.com:6379"
+
     })
+
 
     @cache.memoize(timeout=TIMEOUT)
     def get_figure():
