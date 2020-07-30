@@ -8,9 +8,11 @@ library("readxl")
 library("xtable")
 library( broom )
 library(EnvStats)
+library(stringi)
 
 #loading data
-datos <- read.csv("~/Repo/ds4a-team75/datos.csv")
+datos <- read.csv("~/Repo/ds4a-team75/datos.csv", 
+                  encoding = "UTF-8")
 
 #calculting mean and variance of failures count in data
 #a=mean(datos$NumberOT)
@@ -18,6 +20,17 @@ datos <- read.csv("~/Repo/ds4a-team75/datos.csv")
 #
 #converting data into data table
 datos<-as.data.table(datos)
+####
+###removing accents
+datos[, Nombre_municipio := stri_trans_general(str = Nombre_municipio, 
+                                   id = "Latin-ASCII")]
+
+datos[, District := stri_trans_general(str = District, 
+                                               id = "Latin-ASCII")]
+
+datos[, ServiceType := stri_trans_general(str = ServiceType, 
+                                       id = "Latin-ASCII")]
+
 #identifying optimal transformation to data to identify outliers
 a=boxcox(as.numeric(datos[["NumberOT"]]), optimize=TRUE)
 l=a$lambda
@@ -154,7 +167,7 @@ ggplot(datosb1, aes(as.factor(Month), prob1, fill=District))+
   ylab("Probability of one failure")+
   scale_fill_discrete(name = "District", labels = c("Apartadó TyD", "Turbo TyD"))
 
-ggsave("boxplot_p1_fail_month_distric.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_p1_fail_month_distric.png"), width=15 , height=10 , units = "cm", dpi=320)
 
 ggplot(datosb1, aes(as.factor(Month), prob1, fill=ServiceType))+
   geom_boxplot()+
@@ -162,7 +175,7 @@ ggplot(datosb1, aes(as.factor(Month), prob1, fill=ServiceType))+
   ylab("Probability of one failure")+
   scale_fill_discrete(name = "Service type", labels = c("Energy damages", "Energy maintenance"))
 
-ggsave("boxplot_p1_fail_month_servType.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_p1_fail_month_servType.png"), width=15 , height=10 , units = "cm", dpi=320)
 ###plots of resulting probabilities of two failures by covariates
 
 ggplot(datosb1, aes(as.factor(Month), prob2, fill=District))+
@@ -171,7 +184,7 @@ ggplot(datosb1, aes(as.factor(Month), prob2, fill=District))+
   ylab("Probability of two failures")+
   scale_fill_discrete(name = "District", labels = c("Apartadó TyD", "Turbo TyD"))
 
-ggsave("boxplot_p2_fail_month_district.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_p2_fail_month_district.png"), width=15 , height=10 , units = "cm", dpi=320)
 
 
 ggplot(datosb1, aes(as.factor(Month), prob2, fill=ServiceType))+
@@ -180,7 +193,7 @@ ggplot(datosb1, aes(as.factor(Month), prob2, fill=ServiceType))+
   ylab("Probability of two failures")+
   scale_fill_discrete(name = "Service type", labels = c("Energy damages", "Energy maintenance"))
 
-ggsave("boxplot_p2_fail_month_servType.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_p2_fail_month_servType.png"), width=15 , height=10 , units = "cm", dpi=320)
 
 
 ###plots of resulting probabilities of 3 failures by covariates
@@ -190,7 +203,7 @@ ggplot(datosb1, aes(as.factor(Month), prob3, fill=District))+
   ylab("Probability of three failures")+
   scale_fill_discrete(name = "District", labels = c("Apartadó TyD", "Turbo TyD"))
 
-ggsave("boxplot_p3_fail_month_district.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_p3_fail_month_district.png"), width=15 , height=10 , units = "cm", dpi=320)
 
 
 ggplot(datosb1, aes(as.factor(Month), prob3, fill=ServiceType))+
@@ -199,7 +212,7 @@ ggplot(datosb1, aes(as.factor(Month), prob3, fill=ServiceType))+
   ylab("Probability of three failures")+
   scale_fill_discrete(name = "Service type", labels = c("Energy damages", "Energy maintenance"))
 
-ggsave("boxplot_p3_fail_month_servType.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_p3_fail_month_servType.png"), width=15 , height=10 , units = "cm", dpi=320)
 
 ###plots of resulting probabilities of more than 3 failures by covariates
 ggplot(datosb1, aes(as.factor(Month), prob_may_3, fill=District))+
@@ -208,7 +221,7 @@ ggplot(datosb1, aes(as.factor(Month), prob_may_3, fill=District))+
   ylab("Probability of more than three failures")+
   scale_fill_discrete(name = "District", labels = c("Apartadó TyD", "Turbo TyD"))
 
-ggsave("boxplot_pma3_fail_month_district.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_pma3_fail_month_district.png"), width=15 , height=10 , units = "cm", dpi=320)
 
 
 ggplot(datosb1, aes(as.factor(Month), prob_may_3, fill=ServiceType))+
@@ -217,13 +230,13 @@ ggplot(datosb1, aes(as.factor(Month), prob_may_3, fill=ServiceType))+
   ylab("Probability of more than three failures")+
   scale_fill_discrete(name = "Service type", labels = c("Energy damages", "Energy maintenance"))
 
-ggsave("boxplot_pma3_fail_month_servType.png", width=15 , height=10 , units = "cm", dpi=320)
+ggsave(paste0("~/Repo/ds4a-team75/model_outputs/","boxplot_pma3_fail_month_servType.png"), width=15 , height=10 , units = "cm", dpi=320)
 
 #testing the model with train and test data sets
-train <- read.csv("~/Repo/ds4a-team75/train.csv")
+train <- read.csv("~/Repo/ds4a-team75/model_outputs/train.csv")
 datos<-as.data.table(train)
 
-test <- read.csv("~/Repo/ds4a-team75/test.csv")
+test <- read.csv("~/Repo/ds4a-team75/model_outputs/test.csv")
 test<-as.data.table(test)
 
 m1_train<-vglm(NumberOT ~ C(ServiceType) + C(District) + as.factor(Month), family=posnegbinomial(), data=train)
@@ -232,11 +245,11 @@ sm1_train=summary(m1_train)
 predict(m1_train, newdata = test)
 
 ###printig data to plot in maps
-write.csv(datosb1,"map_data_car.csv")
+write.csv(datosb1,paste0("~/Repo/ds4a-team75/model_outputs/","map_data_car.csv"))
 
+mun_con<-datosb1[,.(promedio=round(mean(predict_round),0)), by="Nombre_municipio"]
 
-
-
+write.csv(mun_con, paste0("~/Repo/ds4a-team75/model_outputs/","promedio_municipios.csv"))
 
 
 
