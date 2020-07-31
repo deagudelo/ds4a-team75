@@ -4,9 +4,10 @@ from database import transforms
 import dash_bootstrap_components as dbc
 
 listaTechLocation = ['Transformador', 'Salida Circuito',
-                     'Aisladero', 'Reconectador', 'Salida_Circuito']
+                     'Aisladero', 'Reconectador', 'Salida_Circuito','Todos']
 #df = transforms.df
 df_localidad = transforms.df_localidad
+
 
 layout = html.Div( 
     [
@@ -29,6 +30,7 @@ layout = html.Div(
                                             options=[{'label': town, 'value': town} for town in df_localidad],
                                             multi=True,
                                             placeholder='Localidad',
+                                            value='TURBO'
                                         )
                                     ]
                                 ),          
