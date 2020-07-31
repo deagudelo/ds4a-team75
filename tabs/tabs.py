@@ -61,7 +61,7 @@ def layout(application):
                                 'aria-selected': "false"
                             },
                             children=[
-                                'Mapa prioridades por municipio'
+                                'Mapas por municipio'
                             ]
                         )
                     ]
