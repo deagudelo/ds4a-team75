@@ -17,33 +17,43 @@ def layout(application):
     })
 
     @cache.memoize(timeout=TIMEOUT)
-    def get_figure1():
-        return map_priority.Map_Fig
+    def get_figure1(zoom, colorScale, provider):
+        return map_priority.map(zoom, colorScale, provider)
 
     @cache.memoize(timeout=TIMEOUT)
-    def get_figure2():
-        return map_expected.Map_Fig
+    def get_figure2(zoom, colorScale, provider):
+        return map_expected.map(zoom, colorScale, provider)
 
     return html.Div(
-        className="my-2",
+        className="my-2 row",
         children=[
-            html.H2("Mapa de fallas esperadas por municipio", id='title1',
-                    className="mx-auto my-2 text-center"),  # Creates the title of the app
-            html.Div(className='container', children=[
-                dcc.Graph(
-                    figure=get_figure2(),
-                    config=dict(responsive=True),
-                    style={'height': '100%'}
-                )
-            ]),
-            html.H2("Mapa de prioridades por municipio", id='title2',
-                    className="mx-auto my-2 text-center"),  # Creates the title of the app
-            html.Div(className='container', children=[
-                dcc.Graph(
-                    figure=get_figure1(),
-                    config=dict(responsive=True),
-                    style={'height': '100%'}
-                )
-            ]),
+            html.Div(
+                className="col-xs-10 col-md-6 mx-auto",
+                children=[
+                    html.H2("Mapa de fallas esperadas por municipio", id='title1',
+                            className="mx-auto my-4 text-center"),  # Creates the title of the app
+                    html.Div(className='container', children=[
+                        dcc.Graph(
+                            figure=get_figure2(7, "Viridis_r", "go"),
+                            config=dict(responsive=True),
+                            style={'width': '100%'}
+                        )
+                    ])
+                ]
+            ),
+            html.Div(
+                className="col-xs-10 col-md-6 mx-auto",
+                children=[
+                    html.H2("Mapa de prioridades por municipio", id='title2',
+                            className="mx-auto my-4 text-center"),  # Creates the title of the app
+                    html.Div(className='container', children=[
+                        dcc.Graph(
+                            figure=get_figure1(7, "Viridis_r", "go"),
+                            config=dict(responsive=True),
+                            style={'width': '100%'}
+                        )
+                    ])
+                ]
+            )
         ]
     )

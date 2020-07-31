@@ -1,7 +1,7 @@
 import unicodedata
 import pandas as pd
 import json
-import plotly.express as px
+import plotly.graph_objects as go
 import os
 from database import transforms
 
@@ -20,14 +20,19 @@ with open(os.path.join(os.getcwd(), 'database', 'GeoData', 'mapasolourabaeditado
     geojson = json.loads(geo.read())
 
 
-Map_Fig = px.choropleth_mapbox(df,                          #Data
-        locations="Nombre_municipio",                    #Column containing the identifiers used in the GeoJSON file
-        color='promedio',                          #Column giving the color intensity of the region
-        geojson=geojson,                           #The GeoJSON file
-        featureidkey="properties.MPIO_CNMBR",      #Id in properties
-        zoom=5,                                    #Zoom
-        mapbox_style="carto-positron",             #Mapbox style, for different maps you need a Mapbox account and a token
-        center={"lat": 7.88299, "lon": -76.62587}, #Center
-        color_continuous_scale="Viridis",          #Color Scheme
-        opacity=0.5,                               #Opacity of the map
+def map(zoom, colorScale, provider):
+    fig = go.Figure(
+        go.Choroplethmapbox(
+            geojson=geojson,
+            locations=df["Nombre_municipio"],
+            z=df['promedio'],
+            colorscale=colorScale,
+            featureidkey="properties.MPIO_CNMBR",  # Id in properties
+            marker_opacity=0.5,
+            marker_line_width=0,
         )
+    )
+    fig.update_layout(mapbox_style="carto-positron", mapbox_zoom=zoom,
+                      mapbox_center={"lat": 7.88299, "lon": -76.62587})
+    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+    return fig

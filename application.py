@@ -2,7 +2,7 @@ import os
 import dash
 import plotly
 import dash_core_components as dcc
-import dash_html_components as html 
+import dash_html_components as html
 import dash_table
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
@@ -21,18 +21,18 @@ df = transforms.df
 external_scripts = [
     {
         'src': 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-        'integrity' : 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
-        'crossorigin' : 'anonymous'
+        'integrity': 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
+        'crossorigin': 'anonymous'
     },
     {
         'src': 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
-        'integrity' : 'sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1',
-        'crossorigin' : 'anonymous'
+        'integrity': 'sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1',
+        'crossorigin': 'anonymous'
     },
     {
         'src': 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
-        'integrity' : 'sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM',
-        'crossorigin' : 'anonymous'
+        'integrity': 'sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM',
+        'crossorigin': 'anonymous'
     }
 ]
 external_stylesheets = [
@@ -56,37 +56,52 @@ application.config.suppress_callback_exceptions = True
 
 df = transforms.df
 application.layout = html.Div([
-            navbar.Navbar(application), 
-#            title.layout(application),
-			#sidepanel.layout,
+    navbar.Navbar(application),
+    #            title.layout(application),
+    # sidepanel.layout,
 
-			 
 
+
+    html.Div(
+        className="container-fluid",
+        children=[
             html.Div(
-                className="container-fluid",
+                className='row',
                 children=[
                     html.Div(
-                        className='row',
+                        className="col-xs-4 col-md-2 collapse m-0 p-0 h-100",
+                        id="collapseExample",
+                        children=[
+                            sidepanel.layout
+                        ], style={'backgroundColor': '#D3A901'}
+                    ),
+                    html.Div(
+                        className='col-xs-8 col-md-10 mx-auto',
                         children=[
                             html.Div(
-                                className='col-xs-4 col-md-2',
+                                className='col-xs-12',
                                 children=[
-                                    sidepanel.layout
-                                ],style={'backgroundColor':'#D3A901'}
-                            ),
-                            html.Div(
-                                className='col-xs-8 col-md-10',
-                                children=[
-                                    tabs.layout(application)
+                                    html.A(
+                                        className='btn sticky-top',
+                                        **{
+                                            'data-toggle': 'collapse',
+                                        },
+                                        href="#collapseExample",
+                                        role="button",
+                                        children=["Toggle Filters"]
+                                    )
                                 ]
-                            )
-
+                            ),
+                            tabs.layout(application)
                         ]
                     )
+
                 ]
             )
+        ]
+    )
 
-            ])
+])
 
 
 @application.callback(
@@ -97,15 +112,15 @@ application.layout = html.Div([
     [
         Input('techlocation', 'value'),
         Input('town', 'value')
-    ])  
-def update_figure(tech,town):
-	if town is None: 
-			town = ['TURBO']
-	dff= df[df['year'] == '2019']
-	dff= dff[dff['town'].isin(town)]
-	return	transforms.create_g1(tech,town),transforms.create_g2(tech,town,dff)
+    ])
+def update_figure(tech, town):
+    if town is None:
+        town = ['TURBO']
+    dff = df[df['year'] == '2019']
+    dff = dff[dff['town'].isin(town)]
+    return transforms.create_g1(tech, town), transforms.create_g2(tech, town, dff)
 
 
 if __name__ == '__main__':
-    application.run_server(debug = True)#, host='0.0.0.0', port=80)
-    #app.run_server(host='0.0.0.0',port='8050',debug=True)
+    application.run_server(debug=True)  # , host='0.0.0.0', port=80)
+    # app.run_server(host='0.0.0.0',port='8050',debug=True)
