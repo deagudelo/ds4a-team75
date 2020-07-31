@@ -99,7 +99,7 @@ df.Latitude = df.Latitude/1000000
 df.Longitude = df.Longitude/1000000
 df['coordenada']=df['Latitude'].round(8).astype(str)+str(', ')+df['Longitude'].round(8).astype(str)
 
-#Location fix #commented because is not workig, this code only runs in jupyter notebook?
+#Location fix 
 
 
 temp_df=df.town.value_counts().rename_axis('unique_values').to_frame('counts')
@@ -108,8 +108,8 @@ temp_ind=df[df['town'].isin(temp_df)].index
 locator = Nominatim( user_agent='myGeocoder', timeout=10 )
 
 #df['town'][2]=locator.reverse(df['coordenada'][2]).raw["address"].get("county")
-for i in temp_ind:
-					df['town'][i]=locator.reverse(df['coordenada'][i]).raw["address"].get("county")
+#for i in temp_ind:
+#					df['town'][i]=locator.reverse(df['coordenada'][i]).raw["address"].get("county")
 
 df.town = df.town.str.replace('San Pedro de Urabá', 'San pedro de urabá',regex=True)
 df.town = df.town.str.replace('San Juan de Urabá', 'San juan de urabá',regex=True)
@@ -148,6 +148,8 @@ fig_mapbox.update_layout(mapbox_zoom=8)
 # drop downs data
 
 df_localidad=df['town'].unique()
+#df_localidad.append('All')
+df_localidad = np.append (df_localidad, 'Todos')
 
 ##########################
 #graphs dinamic
@@ -162,8 +164,17 @@ def create_g1(tech,town):
         #fig2=fig
         return fig
 
-def create_g2(tech,town):
-		dff= df[df['year'] == '2019']
-		dfg= dff.groupby(['month','town'])['NumberOT'].count().reset_index()
-		fig2 = px.line(dfg, x="month", y="NumberOT", color='town')
-		return fig2
+def create_g2(tech,town,dff):
+        dfg= dff.groupby(['month','town'])['NumberOT'].count().reset_index()
+        fig2 = px.line(dfg, x="month", y="NumberOT", color='town')
+        return fig2
+
+
+
+
+
+
+
+
+
+

@@ -15,6 +15,7 @@ import pandas as pd
 
 from tabs import sidepanel, title, tabs, navbar
 from database import transforms
+df = transforms.df
 
 
 external_scripts = [
@@ -55,8 +56,12 @@ application.config.suppress_callback_exceptions = True
 
 df = transforms.df
 application.layout = html.Div([
-            navbar.Navbar(), 
-            title.layout(application),
+            navbar.Navbar(application), 
+#            title.layout(application),
+			#sidepanel.layout,
+
+			 
+
             html.Div(
                 className="container-fluid",
                 children=[
@@ -67,7 +72,7 @@ application.layout = html.Div([
                                 className='col-xs-4 col-md-2',
                                 children=[
                                     sidepanel.layout
-                                ]
+                                ],style={'backgroundColor':'#D3A901'}
                             ),
                             html.Div(
                                 className='col-xs-8 col-md-10',
@@ -83,6 +88,7 @@ application.layout = html.Div([
 
             ])
 
+
 @application.callback(
     [
         Output('graph_circuits', 'figure'),
@@ -93,8 +99,11 @@ application.layout = html.Div([
         Input('town', 'value')
     ])  
 def update_figure(tech,town):
-        
-        return transforms.create_g1(tech,town), transforms.create_g2(tech,town)
+	if town is None: 
+			town = ['TURBO']
+	dff= df[df['year'] == '2019']
+	dff= dff[dff['town'].isin(town)]
+	return	transforms.create_g1(tech,town),transforms.create_g2(tech,town,dff)
 
 
 if __name__ == '__main__':
