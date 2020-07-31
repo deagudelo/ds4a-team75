@@ -33,7 +33,12 @@ external_scripts = [
         'src': 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
         'integrity': 'sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM',
         'crossorigin': 'anonymous'
+    },
+    {
+        'src': 'https://kit.fontawesome.com/c96da4d2be.js',
+        'crossorigin': 'anonymous'
     }
+
 ]
 external_stylesheets = [
     {
@@ -41,6 +46,27 @@ external_stylesheets = [
         'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
         'crossorigin': 'anonymous',
         'integrity': 'sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
+    },
+    # {
+    #     'href': 'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
+    #     'rel': 'stylesheet',
+    #     'integrity': 'sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf',
+    #     'crossorigin': 'anonymous'
+    # },
+    {
+        'rel': 'stylesheet',
+        'href': 'https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css',
+        'media': 'all'
+    },
+    {
+        'rel': 'stylesheet',
+        'href': 'https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css',
+        'media': 'all'
+    },
+    {
+        'rel': 'stylesheet',
+        'href': 'https://kit-free.fontawesome.com/releases/latest/css/free.min.css',
+        'media': 'all'
     },
     'https://codepen.io/chriddyp/pen/bWLwgP.css',
     dbc.themes.BOOTSTRAP
@@ -66,38 +92,47 @@ application.layout = html.Div([
         className="container-fluid",
         children=[
             html.Div(
-                className='row',
+                className='row py-2',
                 children=[
                     html.Div(
                         className="col-xs-4 col-md-2 collapse m-0 p-0 h-100",
                         id="collapseExample",
                         children=[
                             sidepanel.layout
-                        ], style={'backgroundColor': '#D3A901'}
+                        ], style={'backgroundColor': '#FFFFFF'}
                     ),
                     html.Div(
                         className='col-xs-8 col-md-10 mx-auto',
                         children=[
-                            html.Div(
-                                className='col-xs-12',
-                                children=[
-                                    html.A(
-                                        className='btn sticky-top',
-                                        **{
-                                            'data-toggle': 'collapse',
-                                        },
-                                        href="#collapseExample",
-                                        role="button",
-                                        children=["Toggle Filters"]
-                                    )
-                                ]
-                            ),
                             tabs.layout(application)
                         ]
                     )
 
                 ]
-            )
+            ),
+            html.Div(
+                className="fab-container",
+                children=[
+                    html.Div(
+                        className="fab fab-icon-holder",
+                        children=[
+                            html.A(
+                                **{
+                                    'data-toggle': 'collapse',
+                                },
+                                href="#collapseExample",
+                                role="button",
+                                children=[
+                                    html.I(
+                                        className="fas fa-filter",
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                ]
+            ),
+
         ]
     )
 
