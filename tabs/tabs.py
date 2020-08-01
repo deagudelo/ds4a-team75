@@ -1,6 +1,6 @@
 import dash
 import dash_html_components as html
-from tabs import tab1, tab2, tab3
+from tabs import tab1, tab2, tab3, tab_us
 
 
 def layout(application):
@@ -9,6 +9,25 @@ def layout(application):
             className='nav nav-tabs',
             role='tablist',
             children=[
+                html.Li(
+                    className='nav-item',
+                    children=[
+                        html.A(
+                            className='nav-link',
+                            id='eda3-tab',
+                            role='tab',
+                            href='#eda3',
+                            **{
+                                'data-toggle': 'tab',
+                                'aria-controls': "eda3",
+                                'aria-selected': "false"
+                            },
+                            children=[
+                                'Mapas por municipio'
+                            ]
+                        )
+                    ]
+                ),
                 html.Li(
                     className='nav-item',
                     children=[
@@ -52,16 +71,16 @@ def layout(application):
                     children=[
                         html.A(
                             className='nav-link',
-                            id='eda3-tab',
+                            id='us-tab',
                             role='tab',
-                            href='#eda3',
+                            href='#us',
                             **{
                                 'data-toggle': 'tab',
-                                'aria-controls': "eda3",
+                                'aria-controls': "us",
                                 'aria-selected': "false"
                             },
                             children=[
-                                'Mapas por municipio'
+                                'About Us'
                             ]
                         )
                     ]
@@ -102,6 +121,17 @@ def layout(application):
                     role='tabpanel',
                     **{
                         'aria-labelledby': "eda3-tab"
+                    }
+                ),
+                html.Div(
+                    id='us',
+                    className='tab-pane fade p-2',
+                    children=[
+                        tab_us.layout()
+                    ],
+                    role='tabpanel',
+                    **{
+                        'aria-labelledby': "us-tab"
                     }
                 )
             ]
