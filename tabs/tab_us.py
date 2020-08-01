@@ -2,10 +2,6 @@ import os
 import dash
 import dash_html_components as html
 
-nombre = "Natesh Pillai"
-img = "https://stat.cornell.edu/sites/default/files/styles/headline/public/Pillai%20Natesh.jpg?itok=gStYjnSu"
-desc = "el profe es crack"
-
 pipol = [
     {
         "nombre": "Andres Salazar",
@@ -24,7 +20,7 @@ pipol = [
     },
     {
         "nombre": "Daniel Agudelo",
-        "desc": "Software Engineer and Student",
+        "desc": "Hi I'm Daniel",
         "img": "https://team75.s3.amazonaws.com/sdaniel.jpg"
     },
 

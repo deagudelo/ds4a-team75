@@ -1,6 +1,6 @@
 import dash
 import dash_html_components as html
-from tabs import tab1, tab2, tab3, tab_us
+from tabs import tab_maps, tab_performance, tab_us
 
 
 def layout(application):
@@ -13,36 +13,17 @@ def layout(application):
                     className='nav-item',
                     children=[
                         html.A(
-                            className='nav-link',
-                            id='eda3-tab',
-                            role='tab',
-                            href='#eda3',
-                            **{
-                                'data-toggle': 'tab',
-                                'aria-controls': "eda3",
-                                'aria-selected': "false"
-                            },
-                            children=[
-                                'Mapas por municipio'
-                            ]
-                        )
-                    ]
-                ),
-                html.Li(
-                    className='nav-item',
-                    children=[
-                        html.A(
                             className='nav-link active',
-                            id='eda1-tab',
+                            id='maps-tab',
                             role='tab',
-                            href='#eda1',
+                            href='#maps',
                             **{
                                 'data-toggle': 'tab',
-                                'aria-controls': "eda1",
+                                'aria-controls': "maps",
                                 'aria-selected': "true"
                             },
                             children=[
-                                'Exploratory Data Analysis 1'
+                                'GeoData by town'
                             ]
                         )
                     ]
@@ -52,16 +33,16 @@ def layout(application):
                     children=[
                         html.A(
                             className='nav-link',
-                            id='eda2-tab',
+                            id='performance-tab',
                             role='tab',
-                            href='#eda2',
+                            href='#performance',
                             **{
                                 'data-toggle': 'tab',
-                                'aria-controls': "eda2",
+                                'aria-controls': "performance",
                                 'aria-selected': "false"
                             },
                             children=[
-                                'Exploratory Data Analysis 2'
+                                'Performance indicators'
                             ]
                         )
                     ]
@@ -91,36 +72,25 @@ def layout(application):
             className='tab-content',
             children=[
                 html.Div(
-                    id='eda1',
+                    id='maps',
                     className='tab-pane fade show active',
                     children=[
-                        tab1.layout
+                        tab_maps.layout(application)
                     ],
                     role='tabpanel',
                     **{
-                        'aria-labelledby': "eda1-tab"
+                        'aria-labelledby': "maps-tab"
                     }
                 ),
                 html.Div(
-                    id='eda2',
+                    id='performance',
                     className='tab-pane fade',
                     children=[
-                        tab2.layout
+                        tab_performance.layout
                     ],
                     role='tabpanel',
                     **{
-                        'aria-labelledby': "eda2-tab"
-                    }
-                ),
-                html.Div(
-                    id='eda3',
-                    className='tab-pane fade',
-                    children=[
-                        tab3.layout(application)
-                    ],
-                    role='tabpanel',
-                    **{
-                        'aria-labelledby': "eda3-tab"
+                        'aria-labelledby': "performance-tab"
                     }
                 ),
                 html.Div(

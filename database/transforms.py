@@ -137,9 +137,9 @@ fig1 = px.box(num_calls_ot_pri, x="Priority", y="CallID", color="Priority",
               notched=True, title="Box plot of Number of reparations per CallID", color_discrete_sequence=colors.paleta1)
 
 
-fig2 = px.pie(num_service_type, values='ServiceType', names='index',
-              title='Pie chart of the number of reparations by type of service', color_discrete_sequence=colors.paleta1)
-fig2.update_traces(textinfo='percent')
+fig2 = px.bar(num_service_type, y='ServiceType', x='index',
+              title='Repairs by type of service', color_discrete_sequence=colors.paleta1, labels={'ServiceType':'Count', 'index': 'Type of service'})
+# fig2.update_traces(textinfo='value')
 
 
 mapbox_access_token = "pk.eyJ1IjoiY2hyaXN0aWFuYXV6IiwiYSI6ImNrY2lhMzh1cDBkMmUyc28ycTEwejQxZG8ifQ.ANShECn8rBOHPkiB04LOeA"
