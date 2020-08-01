@@ -3,10 +3,13 @@ import dash_core_components as dcc
 from database import transforms
 import dash_bootstrap_components as dbc
 
-listaTechLocation = ['Transformador', 'Salida Circuito',
-                     'Aisladero', 'Reconectador', 'Salida_Circuito','Todos']
+listaTechLocation = ['AISLADERO', 'SALIDA CIRCUITO', 'TRANSFORMADOR', 'SEGMENTO','TRAMO', 'NO ESPECIFICADO', 'RECONECTADOR', 'NODO','ALIMENTADOR PRINCIPAL', 'RAMAL']
+
+listLoc=['TURBO','NECOCLÍ','APARTADÓ','CAREPA','SAN PEDRO DE URABÁ','CHIGORODÓ','ARBOLETES','SAN JUAN DE URABÁ','MUTATÁ','CURRULAO','NUEVA COLONIA','BELEN DE BAJIRA','LA ATOYOSA','RIOSUCIO']
 #df = transforms.df
 df_localidad = transforms.df_localidad
+
+
 
 
 layout = html.Div( 
@@ -19,18 +22,20 @@ layout = html.Div(
         dcc.Dropdown(
             id='techlocation',
             options=[{'label': i, 'value': i} for i in listaTechLocation],
-            value='Transformador'
+            multi=True,
+            placeholder='Network Type',
+            value=[]
         ),
            html.H4('Town:'),
                                 html.Div(
                                     className="div-for-dropdown",
                                     children=[
                                         dcc.Dropdown(
-                                            id='town',
-                                            options=[{'label': town, 'value': town} for town in df_localidad],
+                                            id='townlocation',
+                                            options=[{'label': o, 'value': o} for o in listLoc],
                                             multi=True,
                                             placeholder='Localidad',
-                                            value='TURBO'
+                                            #value=[]
                                         )
                                     ]
                                 ),          
@@ -39,7 +44,6 @@ layout = html.Div(
 
 
 
-        html.Div([html.H5('Controls')]) 
     ],  
 
     

@@ -14,22 +14,12 @@ fig_mapbox = transforms.fig_mapbox
 
 layout = html.Div([
 
+dbc.Row([
+	dbc.Col([dcc.Graph(figure=fig_mapbox, id='unmapa')]),
+	dbc.Col([dbc.Row([dcc.Graph(id='2graph_time')]),
+			dbc.Row([dcc.Graph(id='graph_circuits')]),
+			]),
+		]),
+dbc.Row([dcc.Graph(figure=figpie_comp, id='pie_grap2')]),
 
-					dbc.Row([ 
-					            dbc.Col(
-					                  	dcc.Graph(id='2graph_time')),
-
-					            dbc.Col(
-					                  	dcc.Graph(id='graph_circuits')),
-					        ]),
-
-					dbc.Row([ 
-								dcc.Graph(figure=fig_mapbox, id='unmapa')
-							]),
-								dcc.Graph(figure=figpie_comp, id='pie_grap2')
-					#            html.H1('Tab dos contenido'),
-					#            id='table-paging-with-graph-container',
-					#            className="five columns"
-        		])
-
-
+])
