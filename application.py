@@ -16,7 +16,7 @@ import pandas as pd
 from tabs import sidepanel, title, tabs, navbar
 from database import transforms
 from assets import colors
-df = transforms.df
+
 
 
 external_scripts = [
@@ -82,6 +82,7 @@ server = application.server
 application.config.suppress_callback_exceptions = True
 
 df = transforms.df
+dfcenter = transforms.dfcenter
 application.layout = html.Div([
     navbar.Navbar(application),
     #            title.layout(application),
@@ -144,11 +145,12 @@ application.layout = html.Div([
     [
         Output('graph_circuits', 'figure'),
         Output('2graph_time', 'figure'),
+        Output('unmapa', 'figure'),
     ],
     [
         Input('techlocation', 'value'),
         Input('townlocation', 'value')
-    ])
+    ])  
 def update_figure(tech, townco):
     if (townco is None or townco == []) and (tech is None or tech == []):
         techf = transforms.listaTechLocation
@@ -172,7 +174,7 @@ def update_figure(tech, townco):
         dff = df[df['town'].isin(townf)]
         dff = dff[dff['LocationResume'].isin(techf)]
 
-    return create_g1(dff), create_g2(dff)
+    return create_g1(dff), create_g2(dff),update_map_center(townf,townco)
 
 
 def create_g1(dff):
@@ -224,6 +226,19 @@ def create_g2(dff):
     )
 
     return fig2
+
+def update_map_center(townf,t):
+
+         dfcenter2=dfcenter[dfcenter['lugar']==townf[0]]
+         #print('mapa loc')
+         #print(dfcenter2.head())
+         if (t is None or t==[]):
+                transforms.fig_mapbox.update_layout(mapbox_center ={"lat": 8.119863, "lon": -76.58538})
+                transforms.fig_mapbox.update_layout(mapbox_zoom=8)
+         else:
+                transforms.fig_mapbox.update_layout(mapbox_zoom=14)
+                transforms.fig_mapbox.update_layout(mapbox_center ={"lat": dfcenter2.iloc[0,1], "lon": dfcenter2.iloc[0,2]})
+         return transforms.fig_mapbox
 
 
 if __name__ == '__main__':
