@@ -30,7 +30,7 @@ def layout(application):
             html.Div(
                 className="col-xs-10 col-md-6 mx-auto",
                 children=[
-                    html.H2("Mapa de fallas esperadas por municipio", id='title1',
+                    html.H2("Expected failures by town", id='title1',
                             className="mx-auto my-4 text-center"),  # Creates the title of the app
                     html.Div(className='container', children=[
                         dcc.Graph(
@@ -44,7 +44,7 @@ def layout(application):
             html.Div(
                 className="col-xs-10 col-md-6 mx-auto",
                 children=[
-                    html.H2("Mapa de prioridades por municipio", id='title2',
+                    html.H2("Priority of past failures by town", id='title2',
                             className="mx-auto my-4 text-center"),  # Creates the title of the app
                     html.Div(className='container', children=[
                         dcc.Graph(
