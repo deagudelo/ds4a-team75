@@ -6,7 +6,8 @@ from tabs import tab_maps, tab_performance, tab_us
 def layout(application):
     return html.Div([
         html.Ul(
-            className='nav nav-tabs',
+            className='nav nav-pills my-3 justify-content-center',
+            id="pills-tab",
             role='tablist',
             children=[
                 html.Li(
@@ -18,7 +19,7 @@ def layout(application):
                             role='tab',
                             href='#performance',
                             **{
-                                'data-toggle': 'tab',
+                                'data-toggle': 'pill',
                                 'aria-controls': "performance",
                                 'aria-selected': "true"
                             },
@@ -37,7 +38,7 @@ def layout(application):
                             role='tab',
                             href='#maps',
                             **{
-                                'data-toggle': 'tab',
+                                'data-toggle': 'pill',
                                 'aria-controls': "maps",
                                 'aria-selected': "false"
                             },
@@ -56,7 +57,7 @@ def layout(application):
                             role='tab',
                             href='#us',
                             **{
-                                'data-toggle': 'tab',
+                                'data-toggle': 'pill',
                                 'aria-controls': "us",
                                 'aria-selected': "false"
                             },
@@ -70,6 +71,7 @@ def layout(application):
         ),
         html.Div(
             className='tab-content',
+            id="pills-tabContent",
             children=[
                 html.Div(
                     id='performance',

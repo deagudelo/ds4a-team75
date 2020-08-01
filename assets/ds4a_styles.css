@@ -152,3 +152,50 @@ body {
   object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
   object-position: center;
 }
+
+
+/* not active
+.nav-pills .pill-1 .nav-link:not(.active) {
+  background-color: #83ac07;
+}
+
+.nav-pills .pill-2 .nav-link:not(.active) {
+  background-color: rgba(0, 250, 0, 0.5);
+} */
+
+/* .nav-pills .nav-link:not(.active) {
+  background-color: rgba(0, 0, 250, 0.5);
+  color: white;
+} */
+
+
+/* active (faded)
+.nav-pills .nav-link {
+  background-color: #FFF;
+  color: #83ac07;
+} */
+.nav-pills .nav-link:not(.active) {
+  background-color: #fff !important;
+  color: #83ac07 !important;
+}
+/* 
+.nav-pills .nav-link {
+  background-color: rgba(0, 255, 0, 0.5) !important;
+  color: white;
+} */
+
+
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  background-color: #83ac07 !important;
+  color: #FFF !important;
+}
+
+/* .nav-pills .pill-2 .nav-link {
+  background-color: rgba(0, 250, 0, 0.2);
+}
+
+.nav-pills .pill-3 .nav-link {
+  background-color: rgba(0, 0, 250, 0.2);
+  color: white;
+} */
