@@ -1,50 +1,35 @@
 # -*- coding: utf-8 -*-
 import dash_bootstrap_components as dbc
 import dash_html_components as html
-#from application import application
 
 
-nav_item = dbc.NavItem(dbc.NavLink(html.H2("DS4A"), href="#"))
-
-
-
-
-#def layout(application):
-  #  return
 def Navbar(application):
     navbar = dbc.Navbar(
-    dbc.Container(
-        [
-            html.A(
-
-
-                # Use row and col to control vertical alignment of logo / brand
-                dbc.Row(
-                    [   
-
-                        dbc.Col(html.Img(src=application.get_asset_url("Logo_EPM_blanco.png"), height="50px")),
-                        dbc.Col(dbc.NavbarBrand(html.H2("Electricity Distribution Failure Model",  style={'color': '#284730'}), className="ml-2")),
-                    ],
-                    align="center",
-                    no_gutters=True,
+        dbc.Container(
+            [
+                html.Div(
+                    className="col-xs-12 col-sm-6 col-lg-3 px-0 text-center",
+                    children=[
+                        html.Img(
+                            className="my-auto", src="https://team75.s3.amazonaws.com/electridash-logo.png", height="35px")
+                    ]
                 ),
-                #href="",
-            ),
-
-
-            #dbc.NavbarToggler(id="navbar-toggler2"),
-            dbc.Collapse(
-                dbc.Nav(
-                    [nav_item], className="ml-auto", navbar=True
+                html.Div(
+                    className="col-md-6 text-center d-none d-lg-block px-0",
+                    children=[
+                        html.H2("Electricity Distribution Failure Model",
+                                className="my-auto", style={'color': '#FFF'})
+                    ]
                 ),
-                id="navbar-collapse2",
-                navbar=True,
-            ),
-        ]
-    ),
-    color="#83ac07",
-
-    #dark=True,
-    #className="mb-5",
+                html.Div(
+                    className="col-sm-6 col-lg-3 text-center d-none d-sm-block px-0",
+                    children=[
+                        html.H2("DS4A",  style={
+                            'color': '#FFF'}, className="my-auto")
+                    ]
+                )
+            ]
+        ),
+        color="#83ac07"
     )
     return navbar

@@ -14,16 +14,16 @@ def layout(application):
                     children=[
                         html.A(
                             className='nav-link active',
-                            id='maps-tab',
+                            id='performance-tab',
                             role='tab',
-                            href='#maps',
+                            href='#performance',
                             **{
                                 'data-toggle': 'tab',
-                                'aria-controls': "maps",
+                                'aria-controls': "performance",
                                 'aria-selected': "true"
                             },
                             children=[
-                                'GeoData by town'
+                                'Performance indicators'
                             ]
                         )
                     ]
@@ -33,16 +33,16 @@ def layout(application):
                     children=[
                         html.A(
                             className='nav-link',
-                            id='performance-tab',
+                            id='maps-tab',
                             role='tab',
-                            href='#performance',
+                            href='#maps',
                             **{
                                 'data-toggle': 'tab',
-                                'aria-controls': "performance",
+                                'aria-controls': "maps",
                                 'aria-selected': "false"
                             },
                             children=[
-                                'Performance indicators'
+                                'GeoData by town'
                             ]
                         )
                     ]
@@ -72,25 +72,25 @@ def layout(application):
             className='tab-content',
             children=[
                 html.Div(
-                    id='maps',
-                    className='tab-pane fade show active',
-                    children=[
-                        tab_maps.layout(application)
-                    ],
-                    role='tabpanel',
-                    **{
-                        'aria-labelledby': "maps-tab"
-                    }
-                ),
-                html.Div(
                     id='performance',
-                    className='tab-pane fade',
+                    className='tab-pane fade show active',
                     children=[
                         tab_performance.layout
                     ],
                     role='tabpanel',
                     **{
                         'aria-labelledby': "performance-tab"
+                    }
+                ),
+                html.Div(
+                    id='maps',
+                    className='tab-pane fade',
+                    children=[
+                        tab_maps.layout(application)
+                    ],
+                    role='tabpanel',
+                    **{
+                        'aria-labelledby': "maps-tab"
                     }
                 ),
                 html.Div(

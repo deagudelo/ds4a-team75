@@ -15,6 +15,7 @@ import pandas as pd
 
 from tabs import sidepanel, title, tabs, navbar
 from database import transforms
+from assets import colors
 df = transforms.df
 
 
@@ -147,77 +148,82 @@ application.layout = html.Div([
     [
         Input('techlocation', 'value'),
         Input('townlocation', 'value')
-    ])  
-def update_figure(tech,townco):
-    if (townco is None or townco == []) and (tech is None or tech == []) : 
-        techf=transforms.listaTechLocation
-        townf=transforms.listLoc
-        dff= df[df['town'].isin(townf)]
-        dff= dff[dff['LocationResume'].isin(techf)]
+    ])
+def update_figure(tech, townco):
+    if (townco is None or townco == []) and (tech is None or tech == []):
+        techf = transforms.listaTechLocation
+        townf = transforms.listLoc
+        dff = df[df['town'].isin(townf)]
+        dff = dff[dff['LocationResume'].isin(techf)]
 
     if (townco is not None and townco != []) and (tech is None or tech == []):
-            townf=townco
-            techf=transforms.listaTechLocation
-            dff= df[df['town'].isin(townf)]
-            dff= dff[dff['LocationResume'].isin(techf)]
-    if (townco is None or townco==[])  and (tech is not None and tech != []):
-            techf=tech
-            townf=transforms.listLoc
-            dff= df[df['town'].isin(townf)]
-            dff= dff[dff['LocationResume'].isin(techf)]
+        townf = townco
+        techf = transforms.listaTechLocation
+        dff = df[df['town'].isin(townf)]
+        dff = dff[dff['LocationResume'].isin(techf)]
+    if (townco is None or townco == []) and (tech is not None and tech != []):
+        techf = tech
+        townf = transforms.listLoc
+        dff = df[df['town'].isin(townf)]
+        dff = dff[dff['LocationResume'].isin(techf)]
     if (townco is not None and townco != []) and (tech is not None and tech != []):
-            townf=townco
-            techf=tech
-            dff= df[df['town'].isin(townf)]
-            dff= dff[dff['LocationResume'].isin(techf)]
+        townf = townco
+        techf = tech
+        dff = df[df['town'].isin(townf)]
+        dff = dff[dff['LocationResume'].isin(techf)]
 
+    return create_g1(dff), create_g2(dff)
 
-    return  create_g1(dff), create_g2(dff)
 
 def create_g1(dff):
-        #dff= df[df['LocationResume'] == tech]
-        dfg= dff.groupby(dff['Circuit'])['NumberOT'].count().reset_index()
-        dfg.sort_values(by=['NumberOT'], inplace=True, ascending=False)
-        fig = px.bar(dfg, x='Circuit', y='NumberOT', title='Total of Work Orders by Circuit')
-        fig.update_traces(marker_color='darkseagreen')
-        fig.update_layout(
-            autosize=True,
-            width=450,
-            height=250,
-            margin=dict(
+    #dff= df[df['LocationResume'] == tech]
+    dfg = dff.groupby(dff['Circuit'])['NumberOT'].count().reset_index()
+    dfg.sort_values(by=['NumberOT'], inplace=True, ascending=False)
+    fig = px.bar(dfg, x='Circuit', y='NumberOT',
+                 color_discrete_sequence=colors.paleta1)
+    fig.update_layout(
+        title_text='Total of Work Orders by Circuit', title_x=0.5)
+
+    fig.update_traces(marker_color='darkseagreen')
+    fig.update_layout(
+        autosize=True,
+        width=450,
+        height=250,
+        margin=dict(
             l=0,
             r=0,
             b=0,
-           t=34,
-          pad=4
-         ),
-         paper_bgcolor="white",
-         )
-        #print('creando g1')
-        return fig
+            t=34,
+            pad=4
+        ),
+        paper_bgcolor="white",
+    )
+    #print('creando g1')
+    return fig
+
+
 def create_g2(dff):
-        #print('creando g2')
-        dfg= dff.groupby(['month','town'])['NumberOT'].count().reset_index()
-        fig2 = px.line(dfg, x="month", y="NumberOT", color='town',title="Work orders Totals by time") #, color='town'
-        #print('creando g2')
-        fig2.update_layout(showlegend=False)
-        fig2.update_layout(
-            autosize=True,
-            width=450,
-            height=250,
-            margin=dict(
+    #print('creando g2')
+    dfg = dff.groupby(['month', 'town'])['NumberOT'].count().reset_index()
+    fig2 = px.line(dfg, x="month", y="NumberOT", color='town',
+                   color_discrete_sequence=colors.paleta1)  # , color='town'
+    fig2.update_layout(title_text="Work orders Totals by time", title_x=0.5)
+    fig2.update_layout(showlegend=False)
+    fig2.update_layout(
+        autosize=True,
+        width=450,
+        height=250,
+        margin=dict(
             l=0,
             r=0,
             b=0,
-           t=34,
-          pad=4
-         ),
-         paper_bgcolor="white",
-         )
+            t=34,
+            pad=4
+        ),
+        paper_bgcolor="white",
+    )
 
-
-        return fig2
-
+    return fig2
 
 
 if __name__ == '__main__':

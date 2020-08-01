@@ -123,11 +123,22 @@ figpie = px.pie(num_service_type, values='ServiceType',
                 names='index', title='Service Type Distribution')
 
 locres_wo = pd.read_csv(os.path.join(os.getcwd(), 'database', 'locres_wo.csv'))
-figpie_comp = px.pie(locres_wo, values='LocationResume',
-                     names='index', title='Failure components ditribution', color_discrete_sequence=colors.paleta1)
+figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', color_discrete_sequence=colors.paleta1)
+figpie_comp.update_layout(
+    autosize=True,
+    margin=dict(
+        l=0,
+        r=0,
+        b=0,
+        t=34,
+        pad=4
+    )
+)
+figpie_comp.update_layout(title_text='Failure components ditribution', title_x=0.5)
+
 
 num_repar_ot = df["NumberOT"].value_counts().reset_index()
-fig = px.box(num_repar_ot, y="NumberOT", notched=True, 
+fig = px.box(num_repar_ot, y="NumberOT", notched=True,
              title="Box plot of Number of reparations per Work order")
 
 #
@@ -137,23 +148,33 @@ fig1 = px.box(num_calls_ot_pri, x="Priority", y="CallID", color="Priority",
               notched=True, title="Box plot of Number of reparations per CallID", color_discrete_sequence=colors.paleta1)
 
 
-fig2 = px.bar(num_service_type, y='ServiceType', x='index',
-              title='Repairs by type of service', color_discrete_sequence=colors.paleta1, labels={'ServiceType':'Count', 'index': 'Type of service'})
-# fig2.update_traces(textinfo='value')
+fig2 = px.bar(num_service_type, y='ServiceType', x='index', color_discrete_sequence=colors.paleta1, labels={
+              'ServiceType': 'Count', 'index': 'Type of service'})
+fig2.update_layout(
+    autosize=True,
+    margin=dict(
+        l=0,
+        r=0,
+        b=0,
+        t=34,
+        pad=4
+    )
+)
+fig2.update_layout(title_text='Repairs by type of service', title_x=0.5)
 
 
 mapbox_access_token = "pk.eyJ1IjoiY2hyaXN0aWFuYXV6IiwiYSI6ImNrY2lhMzh1cDBkMmUyc28ycTEwejQxZG8ifQ.ANShECn8rBOHPkiB04LOeA"
 px.set_mapbox_access_token(mapbox_access_token)
-fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude",hover_name='town',    color="ServiceType", #size= 'DuratioMin',
-                  color_discrete_sequence=colors.paleta1, size_max=15, title="Failures Location", mapbox_style="open-street-map")#opacity=0.5)
+fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name='town',    color="ServiceType",  # size= 'DuratioMin',
+                               color_discrete_sequence=colors.paleta1, size_max=15, mapbox_style="open-street-map")  # opacity=0.5)
 
-fig_mapbox.update_layout(mapbox_center ={"lat": 8.094593, "lon": -76.72875})
+fig_mapbox.update_layout(mapbox_center={"lat": 8.094593, "lon": -76.72875})
 fig_mapbox.update_layout(mapbox_zoom=14)
 fig_mapbox.update_layout(showlegend=False)
 fig_mapbox.update_layout(
     autosize=True,
-   # width=500,
-   # height=500,
+    # width=500,
+    # height=500,
     margin=dict(
         l=1,
         r=1,
@@ -163,20 +184,20 @@ fig_mapbox.update_layout(
     ),
     paper_bgcolor="white",
 )
+fig_mapbox.update_layout(title_text="Failures Location", title_x=0.5)
+
 
 # drop downs data
 
-df_localidad=df['town'].unique()
-#df_localidad.append('All')
+df_localidad = df['town'].unique()
+# df_localidad.append('All')
 #df_localidad = np.append (df_localidad, 'All Towns')
 
 ##########################
-#graphs dinamic
+# graphs dinamic
 ########################
-listaTechLocation = ['AISLADERO', 'SALIDA CIRCUITO', 'TRANSFORMADOR', 'SEGMENTO','TRAMO', 'NO ESPECIFICADO', 'RECONECTADOR', 'NODO','ALIMENTADOR PRINCIPAL', 'RAMAL']
+listaTechLocation = ['AISLADERO', 'SALIDA CIRCUITO', 'TRANSFORMADOR', 'SEGMENTO',
+                     'TRAMO', 'NO ESPECIFICADO', 'RECONECTADOR', 'NODO', 'ALIMENTADOR PRINCIPAL', 'RAMAL']
 
-listLoc=['TURBO','NECOCLÍ','APARTADÓ','CAREPA','SAN PEDRO DE URABÁ','CHIGORODÓ','ARBOLETES','SAN JUAN DE URABÁ','MUTATÁ','CURRULAO','NUEVA COLONIA','BELEN DE BAJIRA','LA ATOYOSA','RIOSUCIO']
-
-
-
-
+listLoc = ['TURBO', 'NECOCLÍ', 'APARTADÓ', 'CAREPA', 'SAN PEDRO DE URABÁ', 'CHIGORODÓ', 'ARBOLETES',
+           'SAN JUAN DE URABÁ', 'MUTATÁ', 'CURRULAO', 'NUEVA COLONIA', 'BELEN DE BAJIRA', 'LA ATOYOSA', 'RIOSUCIO']

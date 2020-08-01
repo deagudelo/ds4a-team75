@@ -39,11 +39,6 @@ layout = html.Div(
                                         )
                                     ]
                                 ),          
-
-
-
-
-
     ],  
 
     

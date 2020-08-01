@@ -17,12 +17,17 @@ layout = html.Div(
     className='my-2',
     children=[
         html.Div(
-            className="row",
+            className="row my-2",
             children=[
                 html.Div(
                     className="col-xs-12 col-md-6",
                     children=[
-                        dcc.Graph(figure=fig_mapbox, id='unmapa')
+                        dcc.Graph(
+                            figure=fig_mapbox,
+                            id='unmapa',
+                            config=dict(responsive=True),
+                            style={'width': '100%'}
+                        )
                     ]
                 ),
                 html.Div(
@@ -34,7 +39,11 @@ layout = html.Div(
                                 html.Div(
                                     className="col-xs-10 mx-auto",
                                     children=[
-                                        dcc.Graph(id='2graph_time')
+                                        dcc.Graph(
+                                            id='2graph_time',
+                                            config=dict(responsive=True),
+                                            style={'width': '100%'}
+                                        )
                                     ]
                                 )
                             ]
@@ -45,7 +54,11 @@ layout = html.Div(
                                 html.Div(
                                     className="col-xs-10 mx-auto",
                                     children=[
-                                        dcc.Graph(id='graph_circuits')
+                                        dcc.Graph(
+                                            id='graph_circuits',
+                                            config=dict(responsive=True),
+                                            style={'width': '100%'}
+                                        )
                                     ]
                                 )
                             ]
@@ -54,31 +67,39 @@ layout = html.Div(
                 )
             ]
         ),
-		html.Div(
-            className="row",
+        html.Div(
+            className="row my-2",
             children=[
-				html.Div(
-					className="col-xs-12",
-					children=[
-						dcc.Graph(figure=figpie_comp, id='pie_grap2')
-					]
-				)
+                html.Div(
+                    className="col-xs-10 mx-auto",
+                    children=[
+                        dcc.Graph(
+                            className="mx-auto",
+                            figure=figpie_comp,
+                            id='pie_grap2',
+                            config=dict(responsive=True),
+                            style={'width': '100%'}
+                        )
+                    ]
+                )
             ]
         ),
-		html.Div(
-            className="row",
+        html.Div(
+            className="row my-2",
             children=[
-				html.Div(
-					className="col-xs-12",
-					children=[
-						dcc.Graph(figure=fig2, id='g1')
-					]
-				)
+                html.Div(
+                    className="col-xs-10 mx-auto",
+                    children=[
+                        dcc.Graph(
+                            figure=fig2,
+                            className="mx-auto",
+                            id='g1',
+                            config=dict(responsive=True),
+                            style={'width': '100%'}
+                        )
+                    ]
+                )
             ]
         ),
-		
-
-
-
     ]
 )
