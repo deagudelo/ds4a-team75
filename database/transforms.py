@@ -34,6 +34,10 @@ path = os.path.join(os.getcwd(), 'database', 'uraba_all.xlsx')
 print(path)
 df = pd.read_excel(path)
 
+path2 = os.path.join(os.getcwd(), 'database', 'centrarmapa.xlsx')
+print(path2)
+dfcenter = pd.read_excel(path2)
+
 #############
 # data transformation
 ######################
@@ -168,8 +172,8 @@ px.set_mapbox_access_token(mapbox_access_token)
 fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name='town',    color="ServiceType",  # size= 'DuratioMin',
                                color_discrete_sequence=colors.paleta1, size_max=15, mapbox_style="open-street-map")  # opacity=0.5)
 
-fig_mapbox.update_layout(mapbox_center={"lat": 8.094593, "lon": -76.72875})
-fig_mapbox.update_layout(mapbox_zoom=14)
+fig_mapbox.update_layout(mapbox_center ={"lat": 8.119863, "lon": -76.58538})
+fig_mapbox.update_layout(mapbox_zoom=8)
 fig_mapbox.update_layout(showlegend=False)
 fig_mapbox.update_layout(
     autosize=True,
