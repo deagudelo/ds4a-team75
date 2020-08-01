@@ -1,6 +1,6 @@
 import dash
 import dash_html_components as html
-from tabs import tab_maps, tab_performance, tab_us
+from tabs import tab_maps, tab_performance, tab_us, tab_context
 
 
 def layout(application):
@@ -53,6 +53,25 @@ def layout(application):
                     children=[
                         html.A(
                             className='nav-link',
+                            id='context-tab',
+                            role='tab',
+                            href='#context',
+                            **{
+                                'data-toggle': 'pill',
+                                'aria-controls': "context",
+                                'aria-selected': "false"
+                            },
+                            children=[
+                                'Context'
+                            ]
+                        )
+                    ]
+                ),
+                html.Li(
+                    className='nav-item',
+                    children=[
+                        html.A(
+                            className='nav-link',
                             id='us-tab',
                             role='tab',
                             href='#us',
@@ -93,6 +112,17 @@ def layout(application):
                     role='tabpanel',
                     **{
                         'aria-labelledby': "maps-tab"
+                    }
+                ),
+                html.Div(
+                    id='context',
+                    className='tab-pane fade p-2',
+                    children=[
+                        tab_context.layout()
+                    ],
+                    role='tabpanel',
+                    **{
+                        'aria-labelledby': "context-tab"
                     }
                 ),
                 html.Div(
