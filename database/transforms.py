@@ -63,21 +63,14 @@ df.LocationID = df.LocationID.str.replace(
 # location Description
 
 location_d = df.LocationDescription.str.upper()
-# To add Alimentador principal
 location_d[location_d.str.contains(
     'ALIMENTADOR PRINCIPAL')] = 'ALIMENTADOR PRINCIPAL'
-# To unify Salida circuito
 location_d[location_d == 'SALIDA_CIRCUITO'] = 'SALIDA CIRCUITO'
-# To add Ramal
 location_d[(location_d.str.contains('RAMAL')) | (
     location_d.str.contains('RAMALES'))] = 'RAMAL'
-# To add Tramo
 location_d[location_d.str.contains('TRAMO')] = 'TRAMO'
-# To add Segmento
 location_d[location_d.str.contains('SEGMENTO')] = 'SEGMENTO'
-# To add Nodo
 location_d[location_d.str.contains('NODO')] = 'NODO'
-# Plural Transformador
 location_d[location_d.str.contains('TRANSFORMADORES')] = 'TRANSFORMADOR'
 
 location_d[~location_d.isin(
@@ -148,38 +141,42 @@ fig2 = px.pie(num_service_type, values='ServiceType', names='index',
               title='Pie chart of the number of reparations by type of service', color_discrete_sequence=colors.paleta1)
 fig2.update_traces(textinfo='percent')
 
+
 mapbox_access_token = "pk.eyJ1IjoiY2hyaXN0aWFuYXV6IiwiYSI6ImNrY2lhMzh1cDBkMmUyc28ycTEwejQxZG8ifQ.ANShECn8rBOHPkiB04LOeA"
 px.set_mapbox_access_token(mapbox_access_token)
-fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name='town',   color="ServiceType",  # size= 'DuratioMin',
-                               color_discrete_sequence=colors.paleta1, size_max=15, zoom=10, opacity=0.5)
-fig_mapbox.update_layout(mapbox_style="open-street-map")
-# Se podría cambiar esto por un diccionario por municipios
-fig_mapbox.update_layout(mapbox_center={"lat": 8.202578, "lon": -76.58468})
-fig_mapbox.update_layout(mapbox_zoom=8)
+fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude",hover_name='town',    color="ServiceType", #size= 'DuratioMin',
+                  color_discrete_sequence=colors.paleta1, size_max=15, title="Failures Location", mapbox_style="open-street-map")#opacity=0.5)
+
+fig_mapbox.update_layout(mapbox_center ={"lat": 8.094593, "lon": -76.72875})
+fig_mapbox.update_layout(mapbox_zoom=14)
+fig_mapbox.update_layout(showlegend=False)
+fig_mapbox.update_layout(
+    autosize=True,
+   # width=500,
+   # height=500,
+    margin=dict(
+        l=1,
+        r=1,
+        b=1,
+        t=33,
+        pad=4
+    ),
+    paper_bgcolor="white",
+)
 
 # drop downs data
 
-df_localidad = df['town'].unique()
-# df_localidad.append('All')
-df_localidad = np.append(df_localidad, 'Todos')
+df_localidad=df['town'].unique()
+#df_localidad.append('All')
+#df_localidad = np.append (df_localidad, 'All Towns')
 
 ##########################
-# graphs dinamic
+#graphs dinamic
 ########################
+listaTechLocation = ['AISLADERO', 'SALIDA CIRCUITO', 'TRANSFORMADOR', 'SEGMENTO','TRAMO', 'NO ESPECIFICADO', 'RECONECTADOR', 'NODO','ALIMENTADOR PRINCIPAL', 'RAMAL']
+
+listLoc=['TURBO','NECOCLÍ','APARTADÓ','CAREPA','SAN PEDRO DE URABÁ','CHIGORODÓ','ARBOLETES','SAN JUAN DE URABÁ','MUTATÁ','CURRULAO','NUEVA COLONIA','BELEN DE BAJIRA','LA ATOYOSA','RIOSUCIO']
 
 
-def create_g1(tech, town):
-    dff = df[df['LocationDescription'] == tech]
-    dfg = dff.groupby(df['Circuit'])['NumberOT'].count().reset_index()
-    dfg.sort_values(by=['NumberOT'], inplace=True, ascending=False)
-    fig = px.bar(dfg, x='Circuit', y='NumberOT',
-                 title='Total of Work Orders by Circuit')
-    fig.update_layout(transition_duration=500)
-    # fig2=fig
-    return fig
 
 
-def create_g2(tech, town, dff):
-    dfg = dff.groupby(['month', 'town'])['NumberOT'].count().reset_index()
-    fig2 = px.line(dfg, x="month", y="NumberOT", color='town')
-    return fig2
