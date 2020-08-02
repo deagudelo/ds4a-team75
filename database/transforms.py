@@ -1,14 +1,8 @@
 import os
 import dash
-import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-import dash_html_components as html
 import pandas as pd
-from dash.dependencies import Input, Output, State, ClientsideFunction
-import dash_table
 import plotly.graph_objects as go
 import plotly.express as px
-import numpy as np
 from random import randint
 from pprint import pprint as pp
 import re
@@ -87,13 +81,13 @@ df.Longitude = df.Longitude/1000000
 df['coordenada'] = df['Latitude'].round(8).astype(
     str)+str(', ')+df['Longitude'].round(8).astype(str)
 
-# Location fix
+# Location fix not implemented
 
 
-temp_df = df.town.value_counts().rename_axis('unique_values').to_frame('counts')
-temp_df = temp_df[temp_df['counts'] < 50].index
-temp_ind = df[df['town'].isin(temp_df)].index
-locator = Nominatim(user_agent='myGeocoder', timeout=10)
+#temp_df = df.town.value_counts().rename_axis('unique_values').to_frame('counts')
+#temp_df = temp_df[temp_df['counts'] < 50].index
+#temp_ind = df[df['town'].isin(temp_df)].index
+#locator = Nominatim(user_agent='myGeocoder', timeout=10)
 
 # df['town'][2]=locator.reverse(df['coordenada'][2]).raw["address"].get("county")
 # for i in temp_ind:
