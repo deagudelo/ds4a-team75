@@ -4,15 +4,11 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-#import sqlite3
-
 from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_table
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
-#from datetime import datetime as dt
-#import json
 from random import randint
 from pprint import pprint as pp
 import re
@@ -20,22 +16,13 @@ import geopy
 from geopy.geocoders import Nominatim
 from assets import colors
 
-#conn = sqlite3.connect(r"")
-#c = conn.cursor()
-#df = pd.read_sql("select * from ", conn)
-#df = df[['country','']]
 #############################
 # Load  data
 #############################
-print("cwd:")
-print(os.getcwd())
-# pp(vars(app))
 path = os.path.join(os.getcwd(), 'database', 'uraba_all.xlsx')
-print(path)
 df = pd.read_excel(path)
 
 path2 = os.path.join(os.getcwd(), 'database', 'centrarmapa.xlsx')
-print(path2)
 dfcenter = pd.read_excel(path2)
 
 #############
@@ -127,7 +114,8 @@ figpie = px.pie(num_service_type, values='ServiceType',
                 names='index', title='Service Type Distribution')
 
 locres_wo = pd.read_csv(os.path.join(os.getcwd(), 'database', 'locres_wo.csv'))
-figpie_comp = px.pie(locres_wo, values='LocationResume', names='index', color_discrete_sequence=colors.paleta1)
+figpie_comp = px.pie(locres_wo, values='LocationResume',
+                     names='index', color_discrete_sequence=colors.paleta1)
 figpie_comp.update_layout(
     autosize=True,
     margin=dict(
@@ -138,7 +126,8 @@ figpie_comp.update_layout(
         pad=4
     )
 )
-figpie_comp.update_layout(title_text='Failure components ditribution', title_x=0.5)
+figpie_comp.update_layout(
+    title_text='Failure components ditribution', title_x=0.5)
 
 
 num_repar_ot = df["NumberOT"].value_counts().reset_index()
@@ -172,7 +161,7 @@ px.set_mapbox_access_token(mapbox_access_token)
 fig_mapbox = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name='town',    color="ServiceType",  # size= 'DuratioMin',
                                color_discrete_sequence=colors.paleta1, size_max=15, mapbox_style="open-street-map")  # opacity=0.5)
 
-fig_mapbox.update_layout(mapbox_center ={"lat": 8.119863, "lon": -76.58538})
+fig_mapbox.update_layout(mapbox_center={"lat": 8.119863, "lon": -76.58538})
 fig_mapbox.update_layout(mapbox_zoom=8)
 fig_mapbox.update_layout(showlegend=False)
 fig_mapbox.update_layout(

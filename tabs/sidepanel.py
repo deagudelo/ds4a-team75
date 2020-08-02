@@ -1,7 +1,6 @@
 import dash_html_components as html
 import dash_core_components as dcc
 from database import transforms
-import dash_bootstrap_components as dbc
 
 listaTechLocation = ['AISLADERO', 'SALIDA CIRCUITO', 'TRANSFORMADOR', 'SEGMENTO','TRAMO', 'NO ESPECIFICADO', 'RECONECTADOR', 'NODO','ALIMENTADOR PRINCIPAL', 'RAMAL']
 

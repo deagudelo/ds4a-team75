@@ -1,10 +1,6 @@
-import os
-import dash
-from dash.dependencies import Input, Output, State, ClientsideFunction
 import dash_html_components as html
 import dash_core_components as dcc
 from flask_caching import Cache
-
 from database import map_priority, map_expected
 
 TIMEOUT = 172800
@@ -17,12 +13,12 @@ def layout(application):
     })
 
     @cache.memoize(timeout=TIMEOUT)
-    def get_figure1(zoom, colorScale, provider):
-        return map_priority.map(zoom, colorScale, provider)
+    def get_figure1(zoom, color_scale, provider):
+        return map_priority.map(zoom, color_scale, provider)
 
     @cache.memoize(timeout=TIMEOUT)
-    def get_figure2(zoom, colorScale, provider):
-        return map_expected.map(zoom, colorScale, provider)
+    def get_figure2(zoom, color_scale, provider):
+        return map_expected.map(zoom, color_scale, provider)
 
     return html.Div(
         className="my-2 row",
