@@ -26,7 +26,5 @@ python application.py
     ├── requirements.txt    # project dependecies      
     └── ...
 
-The ui 
-
 ## Contributing to the app
 Contributing to the app is just editing the base ui layout file (ui.py), and the tabs that you want to modify, on the tabs folder.
