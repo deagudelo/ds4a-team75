@@ -10,7 +10,7 @@ pip install -r requirements.txt
 python application.py
 ```
 
-## File structure
+## Main file structure
     root
     ├── ...
     ├── assets/             # color palette and stylesheets
@@ -23,8 +23,7 @@ python application.py
     ├── application.py      # flask application entry point
     ├── ui.py               # ui layout for the Dash appliation specified in appplication.py
     ├── Procfile            # used for AWS ElasticBeanstalk deployment (probably works with Heroku too)
-    ├── requirements.txt    # project dependecies
-    │   └── ...                 
+    ├── requirements.txt    # project dependecies      
     └── ...
 
 The ui 
