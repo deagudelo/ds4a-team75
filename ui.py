@@ -7,8 +7,10 @@ from assets import colors
 
 
 def set_ui(application):
+    # Get the data
     df = transforms.df
     dfcenter = transforms.dfcenter
+    # Set the layout
     application.layout = html.Div([
         navbar.Navbar(application),
         html.Div(
